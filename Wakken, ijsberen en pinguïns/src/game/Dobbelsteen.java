@@ -3,17 +3,21 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Dobbelsteen {
-	private int radius, diameter, left, center, right, top, middle, bottom, worp, x, y, size, borderRadius, borderWidth;
+public class Dobbelsteen
+{
 	
+	private int radius, diameter, left, center, right, top, middle, bottom, worp, x, y, size, borderRadius, borderWidth, wakken, ijsberen, pinguins;
+	
+	// Constructor voor de klasse Dobbelsteen.
 	public Dobbelsteen( int x, int y ){
 	
-		radius = 25;
+		size = 100;
+		
+		radius = size/10;
 		diameter = radius*2;
-
-		size = 250;
-		borderRadius = 50;
-		borderWidth = 2;
+		
+		borderRadius = size/5;
+		borderWidth = size/50;
 		
 		top = left = size / 5;
 		middle = center = size / 2;
@@ -26,8 +30,34 @@ public class Dobbelsteen {
 	
 	}
 	
-	public void dobbel(){
+	public int getWorp(){
+		return worp;
+	}
+	
+	// een beetje onnodig functie om een getal te forceren.
+	public void setWorp( int worp )
+	{
+		if(worp >= 1 && worp <= 6)
+		{
+			this.worp = worp;
+		}
+		else
+		{
+			this.worp = 1;
+		}
+	}
+	
+	public void dobbel()
+	{
 		worp = (int) ( 6 * Math.random() +1 );
+		
+		if(worp == 1 || worp == 3 || worp == 5){
+			wakken = 1;
+			ijsberen = worp - 1;
+			pinguins = 7 - worp;
+		}else{
+			wakken = ijsberen = pinguins = 0;
+		}
 	}
 	
 	public void draw(Graphics g)
@@ -72,7 +102,7 @@ public class Dobbelsteen {
 			g.fillOval(x + right - radius, y + middle - radius, diameter, diameter);
 		}
 		
-		g.drawString(""+ worp, x + middle, y + size + 50);
+		// g.drawString(""+ worp, x + middle, y + size + 50);
 	}
 	
 	
