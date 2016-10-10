@@ -13,22 +13,19 @@ import java.util.*;
  * @see Opstart
  * @see Paneel
  */
-class Paneel extends JPanel
-{
+class Paneel extends JPanel {
 	// Declareren van de variabelen.
 	private int frameWidth;
 	private JLabel labelWakken, labelIjsberen, labelPinguins;
 	private JTextField invoervakWakken, invoervakIjsberen, invoervakPinguins;
 	private JButton dobbelKnop, checkKnop;
-	
-	
 	private Game game;
 	
-	public Paneel()
-	{
+	public Paneel()	{
 		// Lay-outmanager uitschakelen.
 		setLayout( null );
 		
+		// Framebreedte kan nog niet worden uitgelezen bij instantiering van Paneelklasse
 		frameWidth = (int) this.getWidth();
 		
 		game = new Game();
@@ -97,7 +94,7 @@ class Paneel extends JPanel
 		String text;
 		int width;
 		
-		g.setFont(new Font("Arial", Font.PLAIN, 40));
+		g.setFont(new Font("Arial", Font.PLAIN, 32));
 		text = "Wakken, ijsberen en pinguïns";
 		width = (int) g.getFontMetrics().stringWidth(text);
 		g.drawString( text, (frameWidth - width) / 2, 50 );
@@ -148,8 +145,16 @@ class Paneel extends JPanel
 
 			// TODO: write check function
 			//game.check();
+			/*
+			String invoerstringWakken = invoervakWakken.getText();
+			int wakken = Integer.parseInt( invoerstringWakken );
 			
+			String invoerstringIjsberen = invoervakIjsberen.getText();
+			int ijsberen = Integer.parseInt( invoerstringIjsberen );
 			
+			String invoerstringPinguins = invoervakPinguins.getText();
+			int pinguins = Integer.parseInt( invoerstringPinguins );
+			*/
 			dobbelKnop.setVisible( true );
 			checkKnop.setVisible( false );
 			

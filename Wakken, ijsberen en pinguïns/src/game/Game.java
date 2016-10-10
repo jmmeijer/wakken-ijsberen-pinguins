@@ -11,14 +11,18 @@ public class Game {
 	public Game() {
 		// Standaard aantal dobbelstenen instellen op 3.
 		
+		
+		
 		aantalDobbelstenen = 8;
 		beurt = 1;
 		dobbelstenen = new ArrayList<Dobbelsteen>();
 		
+		int size = (int) 800 / aantalDobbelstenen - 20;
+		
 		 for( int i=0; i<aantalDobbelstenen; i++ ){
 			 
-			 int test = i*(100+20)+20;
-			 Dobbelsteen dobbelsteen = new Dobbelsteen(test, 150);
+			 int test = i*(size+15)+15;
+			 Dobbelsteen dobbelsteen = new Dobbelsteen( size, test, 150 );
 			 
 			// TODO: fix voegtoe functie
 			 dobbelstenen.add( dobbelsteen );

@@ -9,9 +9,11 @@ public class Dobbelsteen
 	private int radius, diameter, left, center, right, top, middle, bottom, worp, x, y, size, borderRadius, borderWidth, wakken, ijsberen, pinguins;
 	
 	// Constructor voor de klasse Dobbelsteen.
-	public Dobbelsteen( int x, int y ){
+	public Dobbelsteen( int size, int x, int y ){
+		
+		
 	
-		size = 100;
+		this.size = size;
 		
 		radius = size/10;
 		diameter = radius*2;
