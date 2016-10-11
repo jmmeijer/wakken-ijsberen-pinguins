@@ -1,6 +1,8 @@
 package game;
 
 import javax.swing.*;
+import javax.swing.event.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -28,7 +30,17 @@ class Paneel extends JPanel {
 		// Framebreedte kan nog niet worden uitgelezen bij instantiering van Paneelklasse
 		frameWidth = (int) this.getWidth();
 		
-		game = new Game();
+		game = new Game(1, 4);
+		
+		JSlider aantalDobbelstenen = new JSlider(JSlider.HORIZONTAL, 3, 8, 3);
+		
+		aantalDobbelstenen.addChangeListener(null);
+		aantalDobbelstenen.setBounds(200, 250, 400, 50);
+		aantalDobbelstenen.setMajorTickSpacing(1);
+		aantalDobbelstenen.setMinorTickSpacing(1);
+		aantalDobbelstenen.setPaintTicks(true);
+		aantalDobbelstenen.setPaintLabels(true);
+		add(aantalDobbelstenen);
 		
 		//dobbelsteen.draw(g);
 		
@@ -97,7 +109,8 @@ class Paneel extends JPanel {
 		g.setFont(new Font("Arial", Font.PLAIN, 32));
 		text = "Wakken, ijsberen en pinguïns";
 		width = (int) g.getFontMetrics().stringWidth(text);
-		g.drawString( text, (frameWidth - width) / 2, 50 );
+		//g.drawString( text, (frameWidth - width) / 2, 50 );
+		g.drawString( text, 50, 50 );
 		
 		width = dobbelKnop.getWidth();
 		dobbelKnop.setBounds( (frameWidth - width) / 2, 300, 200, 50 );
@@ -144,8 +157,8 @@ class Paneel extends JPanel {
 		public void actionPerformed( ActionEvent e ) {
 
 			// TODO: write check function
-			//game.check();
-			/*
+			game.check();
+			
 			String invoerstringWakken = invoervakWakken.getText();
 			int wakken = Integer.parseInt( invoerstringWakken );
 			
@@ -154,12 +167,29 @@ class Paneel extends JPanel {
 			
 			String invoerstringPinguins = invoervakPinguins.getText();
 			int pinguins = Integer.parseInt( invoerstringPinguins );
-			*/
+			
 			dobbelKnop.setVisible( true );
 			checkKnop.setVisible( false );
 			
 			repaint();
 		}
+	}
+	
+	public void stateChanged( ChangeEvent e ) {
+		
+		//int aantalDobbelstenen = game.getAantalDobbelstenen();
+		
+	    JSlider source = (JSlider)e.getSource();
+	    if (!source.getValueIsAdjusting()) {
+	        
+	    	int aantalDobbelstenen = (int) source.getValue();
+	    	
+	        game.setAantalDobbelstenen( aantalDobbelstenen );
+	        
+	    }
+		
+		repaint();
+		
 	}
 	
 }

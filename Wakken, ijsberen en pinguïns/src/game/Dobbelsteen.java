@@ -104,7 +104,7 @@ public class Dobbelsteen
 			g.fillOval(x + right - radius, y + middle - radius, diameter, diameter);
 		}
 		
-		// g.drawString(""+ worp, x + middle, y + size + 50);
+		//g.drawString(""+ worp, x + middle, y + size + 50);
 	}
 	
 	
