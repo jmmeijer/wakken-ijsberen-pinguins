@@ -11,13 +11,11 @@ public class Game {
 	public Game() {
 		// Standaard aantal dobbelstenen instellen op 3.
 		
-		
-		
-		aantalDobbelstenen = 8;
+		aantalDobbelstenen = 4;
 		beurt = 1;
 		dobbelstenen = new ArrayList<Dobbelsteen>();
 		
-		int size = (int) 800 / aantalDobbelstenen - 20;
+		int size = (int) 800 / 8 - 20;
 		
 		 for( int i=0; i<aantalDobbelstenen; i++ ){
 			 

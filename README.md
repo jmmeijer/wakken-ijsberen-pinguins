@@ -1,2 +1,2 @@
-# wakken-ijsberen-pinguins
-Wakken, ijsberen en pinguïns
+# Wakken, ijsberen en pinguïns
+Java-game met 3-8 dobbelstenen
