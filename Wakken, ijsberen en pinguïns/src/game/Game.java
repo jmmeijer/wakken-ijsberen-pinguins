@@ -3,18 +3,29 @@ package game;
 import java.awt.Graphics;
 import java.util.*;
 
+/**
+ * De klasse <code>Game</code> representeert het model Game.
+ * 
+ * @author Jesse
+ * @version 0.2
+ * @see ScorePaneel
+ * @see Dobbelsteen
+ * @see BedieningsPaneel
+ */
 public class Game {
 	
 	private int variant, aantalDobbelstenen, beurt, score, totaalWakken, totaalIjsberen, totaalPinguins;
 	private ArrayList<Dobbelsteen> dobbelstenen;
+	private ArrayList<String> hints;
 
 	public Game( int variant, int aantalDobbelstenen ) {
 		
 		// Check of aantal dobbelstenen tussen 3 en 8 ligt, zo ja: instellen.
+		// Misschien onnodig bij het gebruik van een slider
 		if( aantalDobbelstenen >= 3 && aantalDobbelstenen <= 8){
 			this.aantalDobbelstenen = aantalDobbelstenen;
 		}else{
-			// anders default 3
+			// anders standaard 3
 			this.aantalDobbelstenen = 3;
 		}
 		// Check of variant tussen 1 en 3 ligt, zo ja: instellen.
@@ -28,19 +39,27 @@ public class Game {
 		
 		
 		beurt = 1;
-		dobbelstenen = new ArrayList<Dobbelsteen>();
 		
+		
+
+		this.start();
+		
+	}
+	
+	public void start() {
+		
+		dobbelstenen = new ArrayList<Dobbelsteen>(aantalDobbelstenen);
+
 		int size = (int) 800 / 8 - 20;
 		
 		for( int i=0; i<aantalDobbelstenen; i++ ){
 			 
 			 int test = i*(size+15)+15;
-			 Dobbelsteen dobbelsteen = new Dobbelsteen( size, test, 150 );
+			 Dobbelsteen dobbelsteen = new Dobbelsteen( size, test, 20 );
 			 
 			// TODO: fix voegtoe functie, werkt niet in constructor
-			 dobbelstenen.add( dobbelsteen );
+			 this.voegtoe( dobbelsteen );
 		 }
-		
 		
 	}
 	
@@ -48,11 +67,18 @@ public class Game {
 		dobbelstenen.add( dobbelsteen );
 	}
 	
+	public ArrayList<Dobbelsteen> getDobbelstenen(){
+		return dobbelstenen;
+	}
+	
 	public void dobbel(){
 		// Tel 1 beurt op bij totaal aantal beurten.
 		beurt++;
 		
+		this.start();
+		
 		// reset waardes naar 0.
+		// Misschien in ArrayList?
 		totaalWakken = 0;
 		totaalIjsberen = 0;
 		totaalPinguins = 0;
@@ -62,27 +88,44 @@ public class Game {
 		 }
 	}
 	
-	public void check(){
+	public void check(int wakken, int ijsberen, int pinguins){
+		
+		// reset waardes naar 0.
+		//totaalWakken = 0;
+		//totaalIjsberen = 0;
+		//totaalPinguins = 0;
 
 		
+		// Ga voor elke dobbelsteen het aantal w, ij en p na en tel deze op bij totaal
 		for( Dobbelsteen dobbelsteen : dobbelstenen ){
 			
 			int worp = dobbelsteen.getWorp();
-			int wakken = 0;
-			int ijsberen = 0;
-			int pinguins = 0;
-			
+
 			if(worp == 1 || worp == 3 || worp == 5){
-				wakken = 1;
-				ijsberen = worp - 1;
-				pinguins = 7 - worp;
+				totaalWakken += 1;
+				totaalIjsberen += worp - 1;
+				totaalPinguins += 7 - worp;
 			}
-			
-			totaalWakken += wakken;
-			totaalIjsberen += ijsberen;
-			totaalPinguins += pinguins;
-			
 		}
+		
+		//controleer of de invoer gelijk is, anders is het fout
+		if(wakken == totaalWakken){
+			// aantal wakken goed
+		}else{
+			// aantal wakken fout
+		}
+		if(ijsberen == totaalIjsberen){
+			// aantal ijsberen goed
+		}else{
+			// aantal ijsberen fout
+		}
+		if(pinguins == totaalPinguins){
+			// aantal pinguins goed
+		}else{
+			// aantal pinguins fout
+		}
+		
+		
 	}
 	
 	// Methode om aantal dobbelstenen in te stellen
@@ -112,20 +155,19 @@ public class Game {
 		return score;
 	}
 	
-	public void teken( Graphics g ) {
-
-		 for( Dobbelsteen dobbelsteen : dobbelstenen ){
-			 dobbelsteen.draw( g );
-			 
-			 
-		 }
-		 
-		 g.drawString( "" + totaalWakken, 220, 340 );
-		 g.drawString( "" + totaalIjsberen, 220, 390 );
-		 g.drawString( "" + totaalPinguins, 220, 440 );
-
+	// Methode om de score op te vragen
+	public Integer getTotaalWakken() {
+		return totaalWakken;
 	}
-		
-		
+
+	// Methode om de score op te vragen
+	public Integer getTotaalIjsberen() {
+		return totaalIjsberen;
+	}
+	
+	// Methode om de score op te vragen
+	public Integer getTotaalPinguins() {
+		return totaalPinguins;
+	}		
 	
 }

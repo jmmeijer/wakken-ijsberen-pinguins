@@ -3,16 +3,13 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Dobbelsteen
-{
+public class Dobbelsteen {
 	
 	private int radius, diameter, left, center, right, top, middle, bottom, worp, x, y, size, borderRadius, borderWidth, wakken, ijsberen, pinguins;
 	
 	// Constructor voor de klasse Dobbelsteen.
-	public Dobbelsteen( int size, int x, int y ){
+	public Dobbelsteen( int size, int x, int y ) {
 		
-		
-	
 		this.size = size;
 		
 		radius = size/10;
@@ -28,17 +25,14 @@ public class Dobbelsteen
 		this.x = x;
 		this.y = y;
 		
-		
-	
 	}
 	
-	public int getWorp(){
+	public int getWorp() {
 		return worp;
 	}
 	
 	// een beetje onnodig functie om een getal te forceren.
-	public void setWorp( int worp )
-	{
+	public void setWorp( int worp )	{
 		if(worp >= 1 && worp <= 6)
 		{
 			this.worp = worp;
@@ -49,8 +43,7 @@ public class Dobbelsteen
 		}
 	}
 	
-	public void dobbel()
-	{
+	public void dobbel() {
 		worp = (int) ( 6 * Math.random() +1 );
 		
 		if(worp == 1 || worp == 3 || worp == 5){
@@ -62,8 +55,7 @@ public class Dobbelsteen
 		}
 	}
 	
-	public void draw(Graphics g)
-	{
+	public void draw(Graphics g) {
 		// Teken lijn
 		g.setColor(Color.BLACK);
 		g.fillRoundRect(x-borderWidth, y-borderWidth, size+(borderWidth*2), size+(borderWidth*2), borderRadius+(borderWidth*2), borderRadius+(borderWidth*2)   );
@@ -72,7 +64,6 @@ public class Dobbelsteen
 		
 		// Teken ogen
 		g.setColor(Color.BLACK);
-		
 		
 		if(worp == 1 || worp == 3 || worp == 5)
 		{
