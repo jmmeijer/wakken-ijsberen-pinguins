@@ -2,9 +2,7 @@ package game;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import java.util.*;
-
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -22,8 +20,6 @@ class Paneel extends JPanel {
 	private Game model;
 	private JPanel scorePaneel, view, bedieningsPaneel;
 	private int frameWidth;
-	
-	JPopupMenu popup;
 
 	public Paneel()	{
 		// Lay-outmanager uitschakelen.
@@ -37,10 +33,10 @@ class Paneel extends JPanel {
 		scorePaneel.setPreferredSize(new Dimension(100, 150));
 		//scorePaneel.setMaximumSize(new Dimension(100, 400));
 		
-		view = new GameView( model );
+		view = new GameView( model, scorePaneel );
 		view.setPreferredSize(new Dimension(100, 150));
 		
-		bedieningsPaneel = new BedieningsPaneel( model, view, scorePaneel );
+		bedieningsPaneel = new BedieningsPaneel( model, view );
 		//bedieningsPaneel.setLayout( new BoxLayout( bedieningsPaneel, BoxLayout.X_AXIS ));
 		bedieningsPaneel.setLayout( new GridLayout( 1,2 ) );
 		bedieningsPaneel.setPreferredSize(new Dimension(100, 150));
@@ -50,19 +46,12 @@ class Paneel extends JPanel {
 		add(view, BorderLayout.CENTER);
 		add(bedieningsPaneel, BorderLayout.PAGE_END);
 
-
 		// Framebreedte kan nog niet worden uitgelezen bij instantiering van Paneelklasse
 		frameWidth = (int) this.getWidth();
 		
-		
-
-
 		//dobbelsteen.draw(g);
 		
 		//int test = (int) frameWidth / aantalDobbelstenen;
-		
-
-		popup = new JPopupMenu();
 
 	}
 	
@@ -75,13 +64,10 @@ class Paneel extends JPanel {
 		
 		g.drawString("" + frameWidth , 400, 400);
 		
-		
 //		model.teken( g );
 		
 	}
-	*/
 
-	/*
 	public void stateChanged( ChangeEvent e ) {
 		
 		//int aantalDobbelstenen = model.getAantalDobbelstenen();
@@ -97,35 +83,8 @@ class Paneel extends JPanel {
 	    // start aanroepen om dobbelstenen te laten zien?
 	    model.start();
 	    
-	    
 		view.repaint();
-		
 	}
 	*/
-	
-	
-	
-    class PopupListener extends MouseAdapter {
-        JPopupMenu popup;
- 
-        PopupListener(JPopupMenu popupMenu) {
-            popup = popupMenu;
-        }
- 
-        public void mousePressed(MouseEvent e) {
-            maybeShowPopup(e);
-        }
- 
-        public void mouseReleased(MouseEvent e) {
-            maybeShowPopup(e);
-        }
- 
-        private void maybeShowPopup(MouseEvent e) {
-            if (e.isPopupTrigger()) {
-                popup.show(e.getComponent(),
-                           e.getX(), e.getY());
-            }
-        }
-    }
 	
 }

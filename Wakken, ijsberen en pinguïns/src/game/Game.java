@@ -18,6 +18,7 @@ public class Game {
 	private ArrayList<Dobbelsteen> dobbelstenen;
 	private ArrayList<String> hints;
 
+	// Constructor
 	public Game( int variant, int aantalDobbelstenen ) {
 		
 		// Check of aantal dobbelstenen tussen 3 en 8 ligt, zo ja: instellen.
@@ -36,11 +37,7 @@ public class Game {
 			this.variant = 1;
 		}
 		
-		
-		
 		beurt = 1;
-		
-		
 
 		this.start();
 		
@@ -57,9 +54,14 @@ public class Game {
 			 int test = i*(size+15)+15;
 			 Dobbelsteen dobbelsteen = new Dobbelsteen( size, test, 20 );
 			 
-			// TODO: fix voegtoe functie, werkt niet in constructor
 			 this.voegtoe( dobbelsteen );
 		 }
+		
+		// TODO: onderscheid tussen varianten in tips
+		hints = new ArrayList<String>();
+		hints.add("Wakken zijn in het midden van de Noordpool");
+		hints.add("Ijsberen zijn vaak rondom wakken te vinden");
+		hints.add("Pinguins bevinden zich op de Zuidpool");
 		
 	}
 	
@@ -94,7 +96,6 @@ public class Game {
 		//totaalWakken = 0;
 		//totaalIjsberen = 0;
 		//totaalPinguins = 0;
-
 		
 		// Ga voor elke dobbelsteen het aantal w, ij en p na en tel deze op bij totaal
 		for( Dobbelsteen dobbelsteen : dobbelstenen ){
@@ -125,7 +126,6 @@ public class Game {
 			// aantal pinguins fout
 		}
 		
-		
 	}
 	
 	// Methode om aantal dobbelstenen in te stellen
@@ -138,6 +138,13 @@ public class Game {
 			this.aantalDobbelstenen = 3;
 		}
 		
+	}
+	
+	public String getHint(){
+		// Geef een willekeurige tip
+		Random random = new Random();
+		String randomHint = hints.get( random.nextInt(hints.size()) );
+		return randomHint;
 	}
 	
 	// Methode om aantal dobbelstenen op te vragen

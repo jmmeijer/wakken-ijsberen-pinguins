@@ -2,28 +2,23 @@ package game;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import java.util.*;
-
 import javax.swing.*;
 import javax.swing.event.*;
-
-
 
 public class BedieningsPaneel extends JPanel
 							  implements ChangeListener {
 
 	private Game model;
-	private JPanel view, scorePaneel;
+	private JPanel view;
 	private JLabel labelWakken, labelIjsberen, labelPinguins;
 	private JTextField invoervakWakken, invoervakIjsberen, invoervakPinguins;
 	private JButton dobbelKnop, checkKnop;
 	
 	//Constructor
-	public BedieningsPaneel( Game model, JPanel view, JPanel scorePaneel ){
+	public BedieningsPaneel( Game model, JPanel view ){
 		this.model = model;
 		this.view = view;
-		this.scorePaneel = scorePaneel;
 		
 		int frameWidth = (int) this.getWidth();
 		
@@ -32,14 +27,13 @@ public class BedieningsPaneel extends JPanel
 		// stel achtergrondkleur in
 		setBackground( new Color(0, 0, 0, 70) );
 		
-		
 		JPanel linksPaneel = new JPanel();
 		linksPaneel.setLayout( new BoxLayout( linksPaneel, BoxLayout.Y_AXIS ));
-		linksPaneel.setBackground(Color.RED);
+		//linksPaneel.setBackground(Color.RED);
 		
 		JPanel rechtsPaneel = new JPanel();
 		rechtsPaneel.setLayout( new BoxLayout( rechtsPaneel, BoxLayout.Y_AXIS ) );
-		rechtsPaneel.setBackground(Color.BLUE);
+		//rechtsPaneel.setBackground(Color.BLUE);
 		
 		JPanel linksBovenPaneel = new JPanel();
 		linksBovenPaneel.setLayout( new GridLayout(0, 1) );
@@ -51,9 +45,9 @@ public class BedieningsPaneel extends JPanel
 		JPanel rechtsMiddenPaneel = new JPanel();
 		JPanel rechtsOnderPaneel = new JPanel();
 		
-		linksBovenPaneel.setBackground(Color.BLUE);
-		linksMiddenPaneel.setBackground(Color.YELLOW);
-		linksOnderPaneel.setBackground(Color.RED);
+		//linksBovenPaneel.setBackground(Color.BLUE);
+		//linksMiddenPaneel.setBackground(Color.YELLOW);
+		//linksOnderPaneel.setBackground(Color.RED);
 		
 		linksPaneel.add( linksBovenPaneel );
 		linksPaneel.add( linksMiddenPaneel );
@@ -104,7 +98,6 @@ public class BedieningsPaneel extends JPanel
 		//labelIjsberen.setBounds( 50, 350, 150, 50 );
 		//labelIjsberen.setSize( new Dimension(10,50) );
 		
-		
 		invoervakIjsberen = new JTextField( 10 );
 		//invoervakIjsberen.setBounds( 150, 350, 50, 50 );
 		
@@ -116,11 +109,9 @@ public class BedieningsPaneel extends JPanel
 		invoervakPinguins = new JTextField( 10 );
 		//invoervakPinguins.setBounds( 150, 400, 50, 50 );
 		
-
 	    //b2 = new JButton("Middle button", middleButtonIcon);
 	    //b2.setVerticalTextPosition(AbstractButton.BOTTOM);
 	    //b2.setHorizontalTextPosition(AbstractButton.CENTER);
-		
 		
 		dobbelKnop = new JButton( "Dobbel" );
 		dobbelKnop.addActionListener( new Handler() );
@@ -134,14 +125,13 @@ public class BedieningsPaneel extends JPanel
 		checkKnop.setSize(100, 50);
 		//checkKnop.setBounds(200, 200, 100, 50);
 		
-		checkKnop.setVisible( false );
+		//checkKnop.setVisible( false );
 		
 		int width;
 		width = dobbelKnop.getWidth();
 		
-		dobbelKnop.setBounds( (frameWidth - width) / 2, 300, 200, 50 );
-		checkKnop.setBounds( (frameWidth - width) / 2, 300, 200, 50 );
-		
+		dobbelKnop.setBounds( (frameWidth - width) / 2 - width, 300, 200, 50 );
+		checkKnop.setBounds( (frameWidth - width) / 2 + width, 300, 200, 50 );
 		
 		JSlider aantalDobbelstenen = new JSlider(JSlider.HORIZONTAL, 3, 8, model.getAantalDobbelstenen());
 		
@@ -153,12 +143,10 @@ public class BedieningsPaneel extends JPanel
 		aantalDobbelstenen.setMinorTickSpacing(1);
 		aantalDobbelstenen.setPaintTicks(true);
 		aantalDobbelstenen.setPaintLabels(true);
-		linksMiddenPaneel.add(aantalDobbelstenen);
-
 		
+		// verplaatsen naar settings window
+		//linksMiddenPaneel.add(aantalDobbelstenen);
 		
-		add(linksPaneel);
-		add(rechtsPaneel);
 		rechtsBovenPaneel.add(invoervakWakken);
 		rechtsBovenPaneel.add(labelWakken);
 		rechtsMiddenPaneel.add(invoervakIjsberen);
@@ -172,13 +160,16 @@ public class BedieningsPaneel extends JPanel
         radioPanel.add(variant3Knop);
  
         //add(radioPanel, BorderLayout.LINE_START);
-        linksBovenPaneel.add(radioPanel);
+        
+        // verplaatsen naar settings window
+        //linksBovenPaneel.add(radioPanel);
         
         linksOnderPaneel.add(dobbelKnop);
         linksOnderPaneel.add(checkKnop);
+        
+		add(linksPaneel);
+		add(rechtsPaneel);
 	}
-	
-	
 	
 	class Handler implements ActionListener {
 		public void actionPerformed( ActionEvent e ){
@@ -186,8 +177,8 @@ public class BedieningsPaneel extends JPanel
 			
 			if( e.getSource() == dobbelKnop ){
 				model.dobbel();
-				dobbelKnop.setVisible( false );
-				checkKnop.setVisible( true );
+				//dobbelKnop.setVisible( false );
+				//checkKnop.setVisible( true );
 			}else
 			if( e.getSource() == checkKnop ){
 				
@@ -203,51 +194,15 @@ public class BedieningsPaneel extends JPanel
 				// TODO: check functie die argumenten kan ontvangen??
 				model.check(wakken, ijsberen, pinguins);
 				
-				dobbelKnop.setVisible( true );
-				checkKnop.setVisible( false );
+				//dobbelKnop.setVisible( true );
+				//checkKnop.setVisible( false );
 			}
-			
-			view.repaint();
-			scorePaneel.repaint();
-		}
-	}
-	/*
-	class dobbelKnopHandler implements ActionListener {
-		public void actionPerformed( ActionEvent e )
-		{
-			model.dobbel();
-			dobbelKnop.setVisible( false );
-			checkKnop.setVisible( true );
-			
-			// TODO: Misschien is uitschakelen beter dan verwisselen
-			//dobbelKnop.setEnabled(false);
-			
-			view.repaint();
-		}
-	}
-	
-	class checkKnopHandler implements ActionListener {
-		public void actionPerformed( ActionEvent e ) {
 
-			// TODO: write check function
-			model.check();
-			
-			String invoerstringWakken = invoervakWakken.getText();
-			int wakken = Integer.parseInt( invoerstringWakken );
-			
-			String invoerstringIjsberen = invoervakIjsberen.getText();
-			int ijsberen = Integer.parseInt( invoerstringIjsberen );
-			
-			String invoerstringPinguins = invoervakPinguins.getText();
-			int pinguins = Integer.parseInt( invoerstringPinguins );
-			
-			dobbelKnop.setVisible( true );
-			checkKnop.setVisible( false );
-			
 			view.repaint();
+			
 		}
 	}
-	*/
+
 	public void stateChanged( ChangeEvent e ) {
 		
 		//int aantalDobbelstenen = model.getAantalDobbelstenen();
@@ -263,9 +218,8 @@ public class BedieningsPaneel extends JPanel
 	        
 	    }
 	    
-	    // start aanroepen om dobbelstenen te laten zien?
+	    // start aanroepen om nieuwe aantal dobbelstenen te laten zien?
 	    model.start();
-	    
 	    
 		view.repaint();
 		

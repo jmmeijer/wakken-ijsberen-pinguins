@@ -11,6 +11,8 @@ public class Dobbelsteen {
 	public Dobbelsteen( int size, int x, int y ) {
 		
 		this.size = size;
+		this.x = x;
+		this.y = y;
 		
 		radius = size/10;
 		diameter = radius*2;
@@ -21,10 +23,7 @@ public class Dobbelsteen {
 		top = left = size / 5;
 		middle = center = size / 2;
 		bottom = right = size / 5 * 4;
-		
-		this.x = x;
-		this.y = y;
-		
+
 	}
 	
 	public int getWorp() {
@@ -55,7 +54,7 @@ public class Dobbelsteen {
 		}
 	}
 	
-	public void draw(Graphics g) {
+	public void teken(Graphics g) {
 		// Teken lijn
 		g.setColor(Color.BLACK);
 		g.fillRoundRect(x-borderWidth, y-borderWidth, size+(borderWidth*2), size+(borderWidth*2), borderRadius+(borderWidth*2), borderRadius+(borderWidth*2)   );
@@ -65,30 +64,25 @@ public class Dobbelsteen {
 		// Teken ogen
 		g.setColor(Color.BLACK);
 		
-		if(worp == 1 || worp == 3 || worp == 5)
-		{
+		if(worp == 1 || worp == 3 || worp == 5) {
 			// centerMiddle
 			g.fillOval(x + center - radius, y + middle - radius, diameter, diameter);
 		}
-		if(worp == 2 || worp == 3 || worp == 4 || worp == 5 || worp == 6)
-		{
+		if(worp == 2 || worp == 3 || worp == 4 || worp == 5 || worp == 6) {
 			// topRight
 			g.fillOval(x + right - radius, y + top - radius, diameter, diameter);
 		}
-		if(worp == 2 || worp == 3 || worp == 4 || worp == 5 || worp == 6)
-		{
+		if(worp == 2 || worp == 3 || worp == 4 || worp == 5 || worp == 6) {
 			// bottomLeft
 			g.fillOval(x + left - radius, y + bottom - radius, diameter, diameter);
 		}
-		if(worp == 4 || worp == 5 || worp == 6)
-		{
+		if(worp == 4 || worp == 5 || worp == 6) {
 			// topLeft
 			g.fillOval(x + left - radius, y + top - radius, diameter, diameter);	
 			// bottomRight
 			g.fillOval(x + right - radius, y + bottom - radius, diameter, diameter);
 		}
-		if(worp == 6)
-		{
+		if(worp == 6) {
 			// leftMiddle
 			g.fillOval(x + left - radius, y + middle - radius, diameter, diameter);
 			// rightMiddle
@@ -97,7 +91,5 @@ public class Dobbelsteen {
 		
 		//g.drawString(""+ worp, x + middle, y + size + 50);
 	}
-	
-	
 	
 }

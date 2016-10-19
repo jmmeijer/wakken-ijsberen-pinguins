@@ -1,10 +1,8 @@
 package game;
 
-import javax.swing.*;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * De klasse <code>Opstart</code> representeert een frame.
@@ -18,8 +16,6 @@ public class Opstart extends JFrame
 {
 	private static int width, height;
 	
-
-	
 	public static void main( String args[] )
 	{
 		width = 800;
@@ -32,7 +28,6 @@ public class Opstart extends JFrame
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		frame.setTitle( "Wakken, ijsberen en Pinguïns" );
 		
-		
 		JMenuBar test = maakMenuBalk();
 		
 		frame.setJMenuBar(test);
@@ -40,10 +35,6 @@ public class Opstart extends JFrame
 		JPanel paneel = new Paneel();
 		frame.setContentPane( paneel );
 		frame.setVisible( true );
-		
-		//popup.show(e.getComponent(),e.getX(), e.getY());
-		
-		
 		
 	}
 	
