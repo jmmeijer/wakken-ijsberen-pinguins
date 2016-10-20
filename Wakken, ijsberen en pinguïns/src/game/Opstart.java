@@ -58,10 +58,12 @@ public class Opstart extends JFrame
 		//a group of JMenuItems
 		menuItem = new JMenuItem("Hint", KeyEvent.VK_H);
 		menuItem.getAccessibleContext().setAccessibleDescription( "This doesn't really do anything");
+		//menuItem.addActionListener(this);
 		fileMenu.add(menuItem);
 		
 		menuItem = new JMenuItem("Instellingen", KeyEvent.VK_I);
 		menuItem.getAccessibleContext().setAccessibleDescription( "This doesn't really do anything");
+		//menuItem.addActionListener(this);
 		fileMenu.add(menuItem);
 		
 		// Seperator
@@ -71,6 +73,7 @@ public class Opstart extends JFrame
 		menuItem = new JMenuItem("Afsluiten", KeyEvent.VK_T);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription( "This doesn't really do anything");
+		//menuItem.addActionListener(this);
 		fileMenu.add(menuItem);
 		
 		// Help menu
@@ -78,10 +81,12 @@ public class Opstart extends JFrame
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
 		menuItem = new JMenuItem("Welkom");
+		//menuItem.addActionListener(this);
 		helpMenu.add(menuItem);
 		
 		helpMenu.addSeparator();
 		menuItem = new JMenuItem("Over...");
+		//menuItem.addActionListener(this);
 		helpMenu.add(menuItem);
 		
 		menuBar.add(fileMenu);
