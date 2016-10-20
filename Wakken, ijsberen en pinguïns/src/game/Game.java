@@ -20,7 +20,7 @@ public class Game {
 
 	// Constructor
 	public Game( int variant, int aantalDobbelstenen ) {
-		
+		/*
 		// Check of aantal dobbelstenen tussen 3 en 8 ligt, zo ja: instellen.
 		// Misschien onnodig bij het gebruik van een slider
 		if( aantalDobbelstenen >= 3 && aantalDobbelstenen <= 8){
@@ -29,6 +29,9 @@ public class Game {
 			// anders standaard 3
 			this.aantalDobbelstenen = 3;
 		}
+		*/
+		setAantalDobbelstenen(aantalDobbelstenen);
+		
 		// Check of variant tussen 1 en 3 ligt, zo ja: instellen.
 		if( variant >= 3 && variant <= 8){
 			this.variant = variant;
@@ -43,7 +46,7 @@ public class Game {
 		
 	}
 	
-	public void start() {
+	private void start() {
 		
 		dobbelstenen = new ArrayList<Dobbelsteen>(aantalDobbelstenen);
 
@@ -56,13 +59,13 @@ public class Game {
 			 
 			 this.voegtoe( dobbelsteen );
 		 }
-		
+		/*
 		// TODO: onderscheid tussen varianten in tips
 		hints = new ArrayList<String>();
 		hints.add("Wakken zijn in het midden van de Noordpool");
 		hints.add("Ijsberen zijn vaak rondom wakken te vinden");
 		hints.add("Pinguins bevinden zich op de Zuidpool");
-		
+		*/
 	}
 	
 	public void voegtoe( Dobbelsteen dobbelsteen ) {
@@ -137,7 +140,7 @@ public class Game {
 		} else {
 			this.aantalDobbelstenen = 3;
 		}
-		
+		start();
 	}
 	
 	public String getHint(){

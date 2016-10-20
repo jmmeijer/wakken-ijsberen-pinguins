@@ -133,10 +133,9 @@ public class BedieningsPaneel extends JPanel
 		dobbelKnop.setBounds( (frameWidth - width) / 2 - width, 300, 200, 50 );
 		checkKnop.setBounds( (frameWidth - width) / 2 + width, 300, 200, 50 );
 		
+		// DOCS: https://docs.oracle.com/javase/tutorial/uiswing/components/slider.html
 		JSlider aantalDobbelstenen = new JSlider(JSlider.HORIZONTAL, 3, 8, model.getAantalDobbelstenen());
 		
-		
-		// DOCS: https://docs.oracle.com/javase/tutorial/uiswing/components/slider.html
 		aantalDobbelstenen.addChangeListener(this);
 		//aantalDobbelstenen.setBounds(200, 250, 400, 50);
 		aantalDobbelstenen.setMajorTickSpacing(1);
@@ -145,7 +144,7 @@ public class BedieningsPaneel extends JPanel
 		aantalDobbelstenen.setPaintLabels(true);
 		
 		// verplaatsen naar settings window
-		//linksMiddenPaneel.add(aantalDobbelstenen);
+		linksMiddenPaneel.add(aantalDobbelstenen);
 		
 		rechtsBovenPaneel.add(invoervakWakken);
 		rechtsBovenPaneel.add(labelWakken);
@@ -219,7 +218,7 @@ public class BedieningsPaneel extends JPanel
 	    }
 	    
 	    // start aanroepen om nieuwe aantal dobbelstenen te laten zien?
-	    model.start();
+	    //model.start();
 	    
 		view.repaint();
 		

@@ -2,6 +2,8 @@ package game;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class GameView extends JPanel {
@@ -18,7 +20,11 @@ public class GameView extends JPanel {
 	public void paintComponent( Graphics g ) {
 		super.paintComponent( g );
 		
-		for( Dobbelsteen dobbelsteen : model.getDobbelstenen() ){
+		
+		//eventueel vervangen met een teken functie binnen Game model???
+		ArrayList<Dobbelsteen> dobbelstenen = model.getDobbelstenen();
+		
+		for( Dobbelsteen dobbelsteen : dobbelstenen ){
 			dobbelsteen.teken( g );
 		}
  
