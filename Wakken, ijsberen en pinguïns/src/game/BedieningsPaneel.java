@@ -8,24 +8,27 @@ import javax.swing.event.*;
 
 public class BedieningsPaneel extends JPanel
 							  implements ChangeListener {
-
+	private JFrame frame;
 	private Game model;
-	private JPanel view;
+	private JPanel view, scorePaneel;
 	private JLabel labelWakken, labelIjsberen, labelPinguins;
 	private JTextField invoervakWakken, invoervakIjsberen, invoervakPinguins;
 	private JButton dobbelKnop, checkKnop;
 	
 	//Constructor
-	public BedieningsPaneel( Game model, JPanel view ){
+	public BedieningsPaneel( JFrame frame, Game model, JPanel view, JPanel scorePaneel ){
+		
+		this.frame = frame;
 		this.model = model;
 		this.view = view;
+		this.scorePaneel = scorePaneel;
 		
 		int frameWidth = (int) this.getWidth();
 		
 		Font font = new Font( "Arial", Font.PLAIN, 20 );
 		
 		// stel achtergrondkleur in
-		setBackground( new Color(0, 0, 0, 70) );
+		setBackground( new Color(0, 0, 0, 80) );
 		
 		JPanel linksPaneel = new JPanel();
 		linksPaneel.setLayout( new BoxLayout( linksPaneel, BoxLayout.Y_AXIS ));
@@ -36,7 +39,7 @@ public class BedieningsPaneel extends JPanel
 		//rechtsPaneel.setBackground(Color.BLUE);
 		
 		JPanel linksBovenPaneel = new JPanel();
-		linksBovenPaneel.setLayout( new GridLayout(0, 1) );
+		linksBovenPaneel.setLayout( new GridLayout(1, 1) );
 		//linksBovenPaneel.setLayout( null );
 		
 		JPanel linksMiddenPaneel = new JPanel();
@@ -56,6 +59,15 @@ public class BedieningsPaneel extends JPanel
 		rechtsPaneel.add( rechtsMiddenPaneel );
 		rechtsPaneel.add( rechtsOnderPaneel );
 		
+		linksPaneel.setOpaque(false);
+		linksBovenPaneel.setOpaque(false);
+		linksMiddenPaneel.setOpaque(false);
+		linksOnderPaneel.setOpaque(false);
+		rechtsPaneel.setOpaque(false);
+		rechtsBovenPaneel.setOpaque(false);
+		rechtsMiddenPaneel.setOpaque(false);
+		rechtsOnderPaneel.setOpaque(false);
+		
 	    //Radio knoppen
 	    JRadioButton variant1Knop = new JRadioButton( "Variant 1" );
 	    variant1Knop.setMnemonic(KeyEvent.VK_B);
@@ -70,11 +82,13 @@ public class BedieningsPaneel extends JPanel
 	    variant3Knop.setMnemonic(KeyEvent.VK_D);
 	    variant3Knop.setActionCommand("variant3");
 
+	    /*
 	    //Group the radio buttons.
 	    ButtonGroup group = new ButtonGroup();
 	    group.add(variant1Knop);
 	    group.add(variant2Knop);
 	    group.add(variant3Knop);
+	    */
 	    
 	    //topLeftPanel.add(group);
 		
@@ -126,6 +140,7 @@ public class BedieningsPaneel extends JPanel
 		//checkKnop.setBounds(200, 200, 100, 50);
 		
 		//checkKnop.setVisible( false );
+		checkKnop.setEnabled( false );
 		
 		int width;
 		width = dobbelKnop.getWidth();
@@ -133,6 +148,8 @@ public class BedieningsPaneel extends JPanel
 		dobbelKnop.setBounds( (frameWidth - width) / 2 - width, 300, 200, 50 );
 		checkKnop.setBounds( (frameWidth - width) / 2 + width, 300, 200, 50 );
 		
+		/*
+		// verplaatsen naar settingspaneel
 		// DOCS: https://docs.oracle.com/javase/tutorial/uiswing/components/slider.html
 		JSlider aantalDobbelstenen = new JSlider(JSlider.HORIZONTAL, 3, 8, model.getAantalDobbelstenen());
 		
@@ -142,18 +159,20 @@ public class BedieningsPaneel extends JPanel
 		aantalDobbelstenen.setMinorTickSpacing(1);
 		aantalDobbelstenen.setPaintTicks(true);
 		aantalDobbelstenen.setPaintLabels(true);
-		
-		// verplaatsen naar settings window
+		aantalDobbelstenen.setBackground( new Color(0,0,0,0) );
+		//aantalDobbelstenen.setOpaque(false);
 		linksMiddenPaneel.add(aantalDobbelstenen);
-		
+		*/
+
 		rechtsBovenPaneel.add(invoervakWakken);
 		rechtsBovenPaneel.add(labelWakken);
 		rechtsMiddenPaneel.add(invoervakIjsberen);
 		rechtsMiddenPaneel.add(labelIjsberen);
 		rechtsOnderPaneel.add(invoervakPinguins);
 		rechtsOnderPaneel.add(labelPinguins);
-		
-        JPanel radioPanel = new JPanel(new GridLayout(0, 1));
+		/*
+		// verplaatsen naar settingspaneel
+        JPanel radioPanel = new JPanel(new GridLayout(1, 1));
         radioPanel.add(variant1Knop);
         radioPanel.add(variant2Knop);
         radioPanel.add(variant3Knop);
@@ -162,22 +181,46 @@ public class BedieningsPaneel extends JPanel
         
         // verplaatsen naar settings window
         //linksBovenPaneel.add(radioPanel);
-        
+        */
         linksOnderPaneel.add(dobbelKnop);
         linksOnderPaneel.add(checkKnop);
         
 		add(linksPaneel);
 		add(rechtsPaneel);
+		
+		//Test met anonieme actionlistener
+		/*
+		ActionListener testal = new ActionListener() {
+			public void actionPerformed( ActionEvent e ){
+				JOptionPane.showMessageDialog(frame,
+	                    "Test");
+			}
+		};
+		
+		dobbelKnop.addActionListener(testal);
+		*/
+	}
+	
+	public void paintComponent( Graphics g ) {
+		super.paintComponent(g);
 	}
 	
 	class Handler implements ActionListener {
 		public void actionPerformed( ActionEvent e ){
 			
 			
+			
 			if( e.getSource() == dobbelKnop ){
 				model.dobbel();
+				
+				// verstoppen of...?
 				//dobbelKnop.setVisible( false );
 				//checkKnop.setVisible( true );
+				// ...uitschakelen
+				dobbelKnop.setEnabled( false );
+				checkKnop.setEnabled( true );
+				
+				
 			}else
 			if( e.getSource() == checkKnop ){
 				
@@ -195,9 +238,18 @@ public class BedieningsPaneel extends JPanel
 				
 				//dobbelKnop.setVisible( true );
 				//checkKnop.setVisible( false );
+				
+				checkKnop.setEnabled( false );
+				dobbelKnop.setEnabled( true );
 			}
 
-			view.repaint();
+			//hele frame verversen?
+			frame.repaint();
+			
+			//scorePaneel.repaint();
+			//view.repaint();
+			
+			
 			
 		}
 	}
@@ -220,7 +272,7 @@ public class BedieningsPaneel extends JPanel
 	    // start aanroepen om nieuwe aantal dobbelstenen te laten zien?
 	    //model.start();
 	    
-		view.repaint();
+		frame.repaint();
 		
 	}
 	

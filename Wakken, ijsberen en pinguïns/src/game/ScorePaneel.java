@@ -56,6 +56,7 @@ public class ScorePaneel extends JPanel {
 		// Scoreboard
 		
 		int beurt = model.getBeurt();
+		int score = model.getScore();
 		
 		g.setFont(new Font("Arial", Font.PLAIN, 24));
 		
@@ -63,11 +64,11 @@ public class ScorePaneel extends JPanel {
 		//width = g.getFontMetrics().stringWidth(text);
 		g.drawString( text, frameWidth - 150, 50 );
 		
-		text = "Goed: "+ beurt;
+		text = "Goed: "+ score;
 		//width = g.getFontMetrics().stringWidth(text);
 		g.drawString( text, frameWidth - 150, 80 );
 		
-		text = "Fout: "+ beurt;
+		text = "Fout: "+ (beurt - score);
 		//width = g.getFontMetrics().stringWidth(text);
 		g.drawString( text, frameWidth - 150, 110 );
 	}
@@ -93,6 +94,7 @@ public class ScorePaneel extends JPanel {
 		// Scoreboard
 		
 		int beurt = model.getBeurt();
+		int score = model.getScore();
 		
 		g.setFont(new Font("Arial", Font.PLAIN, 24));
 		
@@ -100,11 +102,11 @@ public class ScorePaneel extends JPanel {
 		//width = g.getFontMetrics().stringWidth(text);
 		g.drawString( text, frameWidth - 150, 50 );
 		
-		text = "Goed: "+ beurt;
+		text = "Goed: "+ score;
 		//width = g.getFontMetrics().stringWidth(text);
 		g.drawString( text, frameWidth - 150, 80 );
 		
-		text = "Fout: "+ beurt;
+		text = "Fout: "+ (beurt - score);
 		//width = g.getFontMetrics().stringWidth(text);
 		g.drawString( text, frameWidth - 150, 110 );
 		

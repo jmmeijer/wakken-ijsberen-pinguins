@@ -20,16 +20,7 @@ public class Game {
 
 	// Constructor
 	public Game( int variant, int aantalDobbelstenen ) {
-		/*
-		// Check of aantal dobbelstenen tussen 3 en 8 ligt, zo ja: instellen.
-		// Misschien onnodig bij het gebruik van een slider
-		if( aantalDobbelstenen >= 3 && aantalDobbelstenen <= 8){
-			this.aantalDobbelstenen = aantalDobbelstenen;
-		}else{
-			// anders standaard 3
-			this.aantalDobbelstenen = 3;
-		}
-		*/
+
 		setAantalDobbelstenen(aantalDobbelstenen);
 		
 		// Check of variant tussen 1 en 3 ligt, zo ja: instellen.
@@ -41,6 +32,15 @@ public class Game {
 		}
 		
 		beurt = 1;
+		
+		
+		
+		// TODO: onderscheid tussen varianten in tips
+		hints = new ArrayList<String>();
+		hints.add("Wakken zijn in het midden van de Noordpool");
+		hints.add("Ijsberen zijn vaak rondom wakken te vinden");
+		hints.add("Pinguins bevinden zich op de Zuidpool");
+		
 
 		this.start();
 		
@@ -48,10 +48,12 @@ public class Game {
 	
 	private void start() {
 		
+		// kan dit beter in de constructor???
 		dobbelstenen = new ArrayList<Dobbelsteen>(aantalDobbelstenen);
 
 		int size = (int) 800 / 8 - 20;
 		
+		// Kan dit beter aan setAantalDobbelstenen worden toegevoegd?
 		for( int i=0; i<aantalDobbelstenen; i++ ){
 			 
 			 int test = i*(size+15)+15;
@@ -59,13 +61,7 @@ public class Game {
 			 
 			 this.voegtoe( dobbelsteen );
 		 }
-		/*
-		// TODO: onderscheid tussen varianten in tips
-		hints = new ArrayList<String>();
-		hints.add("Wakken zijn in het midden van de Noordpool");
-		hints.add("Ijsberen zijn vaak rondom wakken te vinden");
-		hints.add("Pinguins bevinden zich op de Zuidpool");
-		*/
+
 	}
 	
 	public void voegtoe( Dobbelsteen dobbelsteen ) {
@@ -112,6 +108,12 @@ public class Game {
 			}
 		}
 		
+		if( wakken == totaalWakken && ijsberen == totaalIjsberen && pinguins == totaalPinguins ){
+			score++;
+		}else{
+			
+		}
+		
 		//controleer of de invoer gelijk is, anders is het fout
 		if(wakken == totaalWakken){
 			// aantal wakken goed
@@ -140,10 +142,11 @@ public class Game {
 		} else {
 			this.aantalDobbelstenen = 3;
 		}
+		// roep start aan om ArrayList te updaten???
 		start();
 	}
 	
-	public String getHint(){
+	public String getRandomHint(){
 		// Geef een willekeurige tip
 		Random random = new Random();
 		String randomHint = hints.get( random.nextInt(hints.size()) );
@@ -178,6 +181,14 @@ public class Game {
 	// Methode om de score op te vragen
 	public Integer getTotaalPinguins() {
 		return totaalPinguins;
-	}		
+	}
+	
+	public void teken( Graphics g ){
+		//ArrayList<Dobbelsteen> dobbelstenen = model.getDobbelstenen();
+		
+		for( Dobbelsteen dobbelsteen : dobbelstenen ){
+			dobbelsteen.teken( g );
+		}
+	}
 	
 }
