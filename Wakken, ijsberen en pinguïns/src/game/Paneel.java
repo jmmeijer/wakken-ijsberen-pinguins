@@ -1,21 +1,17 @@
 package game;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.*;
 
 /**
  * De klasse <code>Paneel</code> representeert een paneel.
  * 
  * @author Jesse
- * @version 0.3
+ * @version 0.4
  * @see Opstart
  * @see Paneel
  */

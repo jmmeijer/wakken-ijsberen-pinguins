@@ -7,7 +7,7 @@ import java.util.*;
  * De klasse <code>Game</code> representeert het model Game.
  * 
  * @author Jesse
- * @version 0.3
+ * @version 0.4
  * @see ScorePaneel
  * @see Dobbelsteen
  * @see BedieningsPaneel
@@ -113,14 +113,10 @@ public class GameModel {
 		// Ga voor elke dobbelsteen het aantal w, ij en p na en tel deze op bij totaal
 		for( Dobbelsteen dobbelsteen : dobbelstenen ){
 			
-			// TODO: get-functie voor dobbelsteen klasse
-			int worp = dobbelsteen.getWorp();
+			totaalWakken += dobbelsteen.getWakken();
+			totaalIJsberen += dobbelsteen.getIJsberen();
+			totaalPinguins += dobbelsteen.getPinguins();
 			
-			if(worp == 1 || worp == 3 || worp == 5){
-				totaalWakken += 1;
-				totaalIJsberen += worp - 1;
-				totaalPinguins += 7 - worp;
-			}
 		}
 		
 		if( wakken == totaalWakken && ijsberen == totaalIJsberen && pinguins == totaalPinguins ){
@@ -225,7 +221,7 @@ public class GameModel {
 	
 	/**
 	 *  Methode om aantal dobbelstenen op te vragen
-	 * @return
+	 * @return het aantal dobbelstenen
 	 */
 	public Integer getAantalDobbelstenen() {
 		return aantalDobbelstenen;

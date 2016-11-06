@@ -1,16 +1,13 @@
 package game;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
 /**
  * De klasse <code>ScorePaneel</code> representeert het scorepaneel.
  * 
  * @author Jesse
- * @version 0.3
+ * @version 0.4
  * @see GameModel
  * @see GameView
  */
@@ -30,8 +27,6 @@ public class ScorePaneel extends JPanel {
 		// stel achtergrondkleur in
 		//setBackground(Color.black);
 		setBackground( new Color(0, 0, 0, 80) );
-		
-
 		
 	}
 	

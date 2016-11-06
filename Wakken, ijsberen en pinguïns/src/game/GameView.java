@@ -1,15 +1,13 @@
 package game;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
 import javax.swing.*;
 
 /**
  * De klasse <code>Gameview</code> representeert het paneel gameview.
  * 
  * @author Jesse
- * @version 0.3
+ * @version 0.4
  * @see GameModel
  * @see GameView
  */

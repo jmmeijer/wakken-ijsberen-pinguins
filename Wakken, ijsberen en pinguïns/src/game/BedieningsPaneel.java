@@ -2,7 +2,6 @@ package game;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.*;
@@ -11,7 +10,7 @@ import javax.swing.event.*;
  * De klasse <code>BediendingsPaneel</code> representeert het bediendingspaneel.
  * 
  * @author Jesse
- * @version 0.3
+ * @version 0.4
  * @see GameModel
  * @see GameView
  */
@@ -299,9 +298,6 @@ public class BedieningsPaneel extends JPanel
 		public void actionPerformed( ActionEvent e ){
 			
 			String newline = "\n";
-			
-			
-			
 			
 			if( e.getSource() == dobbelKnop ){
 				model.dobbel();

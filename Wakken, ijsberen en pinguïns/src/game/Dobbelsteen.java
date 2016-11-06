@@ -7,7 +7,7 @@ import java.awt.Graphics;
  * De klasse <code>Dobbelsteen</code> representeert een dobbelsteen.
  * 
  * @author Jesse
- * @version 0.3
+ * @version 0.4
  * @see GameModel
  * @see GameView
  */
@@ -40,7 +40,7 @@ public class Dobbelsteen {
 	}
 	
 	/**
-	 * genereer een willekeurig getal tussen 1 en 6 en bepaal het aantal wakken ijsberen en pinguins
+	 * genereer een willekeurig getal tussen 1 en 6 en bepaal het aantal wakken ijsberen en pinguins (evt. afhankelijk van spelvariant)
 	 */
 	public void dobbel() {
 		worp = (int) ( 6 * Math.random() +1 );

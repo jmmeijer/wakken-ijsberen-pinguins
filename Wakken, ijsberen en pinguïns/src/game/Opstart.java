@@ -11,14 +11,14 @@ import javax.swing.event.ChangeListener;
  * De klasse <code>Opstart</code> representeert een frame.
  * 
  * @author Jesse
- * @version 0.3
+ * @version 0.4
  * @see Opstart
  * @see Paneel
  */
 public class Opstart implements ActionListener, ChangeListener {
 	
 	// TODO statische var verwijderen
-	private static GameModel model;
+	private GameModel model;
 	
 	/**
 	 * 
@@ -43,10 +43,10 @@ public class Opstart implements ActionListener, ChangeListener {
 		//frame.setJMenuBar(test);
 		
 		frame.setJMenuBar(opstart.maakMenuBalk(frame));
-		model = new GameModel(1, 3);
+		opstart.model = new GameModel(1, 3);
 		
 		//verstuur instantie van Opstartframe mee met Paneel voor manipulatie vanuit Paneel
-		JPanel paneel = new Paneel( frame, model );
+		JPanel paneel = new Paneel( frame, opstart.model );
 		paneel.setPreferredSize(new Dimension( width, height ));
 		paneel.setMinimumSize(new Dimension( width, height ));
 		frame.setContentPane( paneel );
@@ -61,6 +61,8 @@ public class Opstart implements ActionListener, ChangeListener {
 		frame.setLocationRelativeTo(null);
 		
 		frame.setVisible( true );
+		
+		opstart.showWelkom();
 		
 	}
 	
@@ -236,13 +238,24 @@ public class Opstart implements ActionListener, ChangeListener {
     		System.exit(0);
     	}
         else if(command.equals("Welkom")){
-    			
-    			JTextArea output = new JTextArea(5, 30);
+        	showWelkom();
+        	/*
+        		JTextPane output = new JTextPane();
     	        output.setEditable(false);
+    	        output.setContentType("text/html");
+    	        output.setFont(new Font("Arial", Font.PLAIN, 14));
     	        JScrollPane scrollPane = new JScrollPane(output);
     	        
-    			String s = "Welkom";
-    	        output.append(s + newline);
+    			String s = "<html>Welkom"
+    					+ newline
+    					+ "Wakken, ijsberen en pinguïns is een inzichtspel om creatief denken te stimuleren.<br><br>"
+    					+ newline
+    					+ "<b>Speldoel</b><br>"
+    					+ newline
+    					+ "Het doel van het spel is om het totaal aantal wakken, ijsberen en pinguins te raden.<br>"
+    					+ newline
+    					+ "</html>";
+    	        output.setText(s);
     	        // Zet de scrollbalk bovenaan
     	        output.setCaretPosition(0);
     			
@@ -250,6 +263,8 @@ public class Opstart implements ActionListener, ChangeListener {
     					scrollPane,
                         "Uitleg",
                         JOptionPane.PLAIN_MESSAGE);
+                        
+                */
 		}
     	else if(command.equals("Over")){
 		/*if(source.getText() == "Over..."){*/
@@ -260,7 +275,7 @@ public class Opstart implements ActionListener, ChangeListener {
 	        
 			String s = "Wakken, ijsberen en pinguins"
 					+ newline
-					+ "Versie 0.2.0"
+					+ "Versie 0.4.0"
 					+ newline
 					+ "in opdracht van Windesheim, Zwolle"
 					+ newline
@@ -287,6 +302,38 @@ public class Opstart implements ActionListener, ChangeListener {
         output.setCaretPosition(output.getDocument().getLength());
         */
     }
+	
+	public void showWelkom(){
+		JTextPane output = new JTextPane();
+        output.setEditable(false);
+        output.setContentType("text/html");
+        output.setFont(new Font("Arial", Font.PLAIN, 14));
+        JScrollPane scrollPane = new JScrollPane(output);
+        
+		String s = "<html>"
+				+ "<b>Uitleg Wakken, ijsberen en pinguïns</b><br>"
+				+ "Wakken, ijsberen en pinguïns is een inzichtspel om creatief denken te stimuleren.<br><br>"
+				+ "<b>Speldoel</b><br>"
+				+ "Het doel van het spel is om het totaal aantal wakken, ijsberen en pinguins te raden.<br><br>"
+				+ "<b>Spelverloop</b>"
+				+ "<ol>"
+				+ "<li>Gooi met de dobbelstenen,</li>"
+				+ "<li>vul het aantal wakken, ijsberen en pinguins in en</li>"
+				+ "<li>controleer je antwoord.</li>"
+				+ "</ol><br>"
+				+ "<b>Veel speelplezier!</b><br><br>"
+				+ "Je kunt deze uitleg later weer terugvinden via Help > Welkom."
+				+ "</html>";
+        output.setText(s);
+        // Zet de scrollbalk bovenaan
+        output.setCaretPosition(0);
+		
+		JOptionPane.showMessageDialog(null,
+				scrollPane,
+                "Welkom!",
+                JOptionPane.PLAIN_MESSAGE);
+	}
+	
 	
 	// TODO: verplaatsen naar ok button.
 	public void stateChanged( ChangeEvent e ) {
