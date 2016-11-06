@@ -1,0 +1,3 @@
+WARNING - 23:24:46: First conversion pass
+ERROR - 23:24:46: org.xml.sax.SAXParseExceptionpublicId: /Wakken,%20ijsberen%20en%20pinguïns/src/game/BedieningsPaneel.java; systemId: file:/Wakken,%20ijsberen%20en%20pinguïns/src/game/BedieningsPaneel.java; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog.
+ERROR - 23:24:46: org.xml.sax.SAXParseExceptionpublicId: /Wakken,%20ijsberen%20en%20pinguïns/src/game/BedieningsPaneel.java; systemId: file:/Wakken,%20ijsberen%20en%20pinguïns/src/game/BedieningsPaneel.java; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog.
