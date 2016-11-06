@@ -12,7 +12,7 @@ import java.util.*;
  * @see Dobbelsteen
  * @see BedieningsPaneel
  */
-public class Game {
+public class GameModel {
 	
 	private int variant, aantalDobbelstenen, beurt, score, totaalWakken, totaalIJsberen, totaalPinguins;
 	private ArrayList<Dobbelsteen> dobbelstenen;
@@ -23,7 +23,7 @@ public class Game {
 	 * @param variant
 	 * @param aantalDobbelstenen
 	 */
-	public Game( int variant, int aantalDobbelstenen ) {
+	public GameModel( int variant, int aantalDobbelstenen ) {
 
 		setAantalDobbelstenen(aantalDobbelstenen);
 		

@@ -8,7 +8,7 @@ import java.awt.Graphics;
  * 
  * @author Jesse
  * @version 0.3
- * @see Game
+ * @see GameModel
  * @see GameView
  */
 public class Dobbelsteen {

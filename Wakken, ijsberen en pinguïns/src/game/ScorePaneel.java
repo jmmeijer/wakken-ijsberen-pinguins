@@ -11,18 +11,18 @@ import javax.swing.event.*;
  * 
  * @author Jesse
  * @version 0.3
- * @see Game
+ * @see GameModel
  * @see GameView
  */
 public class ScorePaneel extends JPanel {
-	private Game model;
+	private GameModel model;
 	
 	
 	/**
 	 *  Constructor
 	 * @param model
 	 */
-	public ScorePaneel( Game model ){
+	public ScorePaneel( GameModel model ){
 		
 		//setLayout(new GridLayout());
 		this.model = model;

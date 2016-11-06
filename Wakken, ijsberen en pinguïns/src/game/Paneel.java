@@ -22,11 +22,11 @@ import javax.swing.event.*;
 class Paneel extends JPanel {
 	// Declareren van de variabelen.
 	private JFrame frame;
-	private Game model;
+	private GameModel model;
 	private JPanel scorePaneel, view, bedieningsPaneel;
 	private int frameWidth;
 
-	public Paneel(JFrame frame, Game model)	{
+	public Paneel(JFrame frame, GameModel model)	{
 		// Lay-outmanager uitschakelen.
 		//setLayout( null );
 		setLayout(new BorderLayout());

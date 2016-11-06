@@ -10,19 +10,19 @@ import javax.swing.*;
  * 
  * @author Jesse
  * @version 0.3
- * @see Game
+ * @see GameModel
  * @see GameView
  */
 public class GameView extends JPanel {
 
-	private Game model;
+	private GameModel model;
 	
 	/**
 	 *  Constructor
 	 * @param model
 	 * @param scorePaneel
 	 */
-	public GameView( Game model, JPanel scorePaneel ){
+	public GameView( GameModel model, JPanel scorePaneel ){
 		this.model = model;
 		
 		setLayout( null );

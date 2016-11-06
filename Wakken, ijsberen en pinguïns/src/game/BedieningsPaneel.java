@@ -12,13 +12,13 @@ import javax.swing.event.*;
  * 
  * @author Jesse
  * @version 0.3
- * @see Game
+ * @see GameModel
  * @see GameView
  */
 public class BedieningsPaneel extends JPanel
 							  implements ChangeListener {
 	private JFrame frame;
-	private Game model;
+	private GameModel model;
 	private JPanel view, scorePaneel;
 	private JLabel beurtLabel, scoreLabel, foutLabel, wakkenLabel, ijsberenLabel, pinguinsLabel, wakkenTotaalLabel, ijsberenTotaalLabel, pinguinsTotaalLabel;
 	private JTextField wakkenVak, ijsberenVak, pinguinsVak;
@@ -31,7 +31,7 @@ public class BedieningsPaneel extends JPanel
 	 * @param view
 	 * @param scorePaneel
 	 */
-	public BedieningsPaneel( JFrame frame, Game model, JPanel view, JPanel scorePaneel ){
+	public BedieningsPaneel( JFrame frame, GameModel model, JPanel view, JPanel scorePaneel ){
 		
 		this.frame = frame;
 		this.model = model;

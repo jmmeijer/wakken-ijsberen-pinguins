@@ -18,7 +18,7 @@ import javax.swing.event.ChangeListener;
 public class Opstart implements ActionListener, ChangeListener {
 	
 	// TODO statische var verwijderen
-	private static Game model;
+	private static GameModel model;
 	
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class Opstart implements ActionListener, ChangeListener {
 		//frame.setJMenuBar(test);
 		
 		frame.setJMenuBar(opstart.maakMenuBalk(frame));
-		model = new Game(1, 3);
+		model = new GameModel(1, 3);
 		
 		//verstuur instantie van Opstartframe mee met Paneel voor manipulatie vanuit Paneel
 		JPanel paneel = new Paneel( frame, model );
@@ -208,18 +208,7 @@ public class Opstart implements ActionListener, ChangeListener {
 			
 			
 			//test.add(group);
-			
-			/*
-			JTextArea output = new JTextArea(5, 30);
-	        output.setEditable(false);
-	        JScrollPane scrollPane = new JScrollPane(output);
-	        
-			String s = "Welkom";
-	        output.append(s + newline);
-	        // Zet de scrollbalk bovenaan
-	        output.setCaretPosition(0);
-	        
-	        */
+
 			
 			Object[] options = {"Opslaan",
             "Annuleren"};
@@ -238,7 +227,7 @@ public class Opstart implements ActionListener, ChangeListener {
 				JOptionPane.showMessageDialog(null,
 					    "Test");
 				//TODO Alleen opslaan wanneer er op OK is gedrukt
-				view.repaint();
+				//view.repaint();
 			}
 			
 			
