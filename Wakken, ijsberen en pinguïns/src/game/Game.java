@@ -7,7 +7,7 @@ import java.util.*;
  * De klasse <code>Game</code> representeert het model Game.
  * 
  * @author Jesse
- * @version 0.2
+ * @version 0.3
  * @see ScorePaneel
  * @see Dobbelsteen
  * @see BedieningsPaneel
@@ -18,20 +18,25 @@ public class Game {
 	private ArrayList<Dobbelsteen> dobbelstenen;
 	private ArrayList<String> hints;
 
-	// Constructor
+	/**
+	 *  Constructor
+	 * @param variant
+	 * @param aantalDobbelstenen
+	 */
 	public Game( int variant, int aantalDobbelstenen ) {
 
 		setAantalDobbelstenen(aantalDobbelstenen);
 		
 		// Check of variant tussen 1 en 3 ligt, zo ja: instellen.
-		if( variant >= 3 && variant <= 8){
+		// Dit zou automatisch zo moeten zijn door gebruik te maken van radiobuttons
+		if( variant >= 1 && variant <= 3){
 			this.variant = variant;
 		}else{
 			// anders default 1
 			this.variant = 1;
 		}
 		
-		beurt = 1;
+		beurt = 0;
 		
 		
 		
@@ -46,21 +51,21 @@ public class Game {
 		
 	}
 	
+	/**
+	 * Start functie, overbodig geworden
+	 * TODO: referenties verwijderen
+	 */
 	private void start() {
 		
-		// kan dit beter in de constructor???
-		dobbelstenen = new ArrayList<Dobbelsteen>(aantalDobbelstenen);
-
-		int size = (int) 800 / 8 - 20;
+	}
+	
+	/**
+	 * Reset functie om spel opnieuw in te stellen
+	 */
+	public void reset() {
 		
-		// Kan dit beter aan setAantalDobbelstenen worden toegevoegd?
-		for( int i=0; i<aantalDobbelstenen; i++ ){
-			 
-			 int test = i*(size+15)+15;
-			 Dobbelsteen dobbelsteen = new Dobbelsteen( size, test, 20 );
-			 
-			 this.voegtoe( dobbelsteen );
-		 }
+		beurt = 0;
+		score = 0;
 
 	}
 	
@@ -72,6 +77,9 @@ public class Game {
 		return dobbelstenen;
 	}
 	
+	/**
+	 *  Roep voor elke instantie van de dobbelsteen de functie dobbel aan.
+	 */
 	public void dobbel(){
 		// Tel 1 beurt op bij totaal aantal beurten.
 		beurt++;
@@ -89,6 +97,12 @@ public class Game {
 		 }
 	}
 	
+	/**
+	 *  Controleer de ingevoerde aantallen met het antwoord
+	 * @param wakken
+	 * @param ijsberen
+	 * @param pinguins
+	 */
 	public void check(int wakken, int ijsberen, int pinguins){
 		
 		// reset waardes naar 0.
@@ -99,8 +113,9 @@ public class Game {
 		// Ga voor elke dobbelsteen het aantal w, ij en p na en tel deze op bij totaal
 		for( Dobbelsteen dobbelsteen : dobbelstenen ){
 			
+			// TODO: get-functie voor dobbelsteen klasse
 			int worp = dobbelsteen.getWorp();
-
+			
 			if(worp == 1 || worp == 3 || worp == 5){
 				totaalWakken += 1;
 				totaalIjsberen += worp - 1;
@@ -133,19 +148,74 @@ public class Game {
 		
 	}
 	
-	// Methode om aantal dobbelstenen in te stellen
+	/**
+	 * Methode om aantal dobbelstenen in te stellen
+	 * @param aantalDobbelstenen
+	 */
 	public void setAantalDobbelstenen(int aantalDobbelstenen) {
 		
 		// Controleer of de input tussen 3 en 8 is.
 		if(aantalDobbelstenen >= 3 && aantalDobbelstenen <= 8) {
 			this.aantalDobbelstenen = aantalDobbelstenen;
-		} else {
+		} else if (aantalDobbelstenen < 3){
 			this.aantalDobbelstenen = 3;
+		} else if (aantalDobbelstenen > 8){
+			this.aantalDobbelstenen = 8;
 		}
+		
 		// roep start aan om ArrayList te updaten???
-		start();
+		//start();
+		// kan dit beter in de constructor???
+		// kan aantal in arraylist al beter op max 8 ingesteld worden?
+		dobbelstenen = new ArrayList<Dobbelsteen>(aantalDobbelstenen);
+		
+		
+
+		int aantalKolommen = 4;
+		int size = (int) 800 / aantalKolommen - 40;
+		int ypos = (int) 20;
+		int xpos = 20;
+		
+		int k = 0;
+		int r = 0;
+		
+		// Kan dit beter aan setAantalDobbelstenen worden toegevoegd?
+		for( int i=0; i<aantalDobbelstenen; i++ ){
+			
+			//nieuwe loop voor kolommen
+			/*
+			for( k=0; k<aantalKolommen; k++ ){
+				xpos = i*(size+15)+15;
+			}
+			*/
+			
+			 // nieuwe rij??
+			 if( i%aantalKolommen == 0	){
+				 ypos += r*(size+40);
+				 k = 0;
+				 r++;
+				 /*
+				if(k==aantalKolommen){
+					k = 0;
+				}
+				*/
+			 }
+			 
+			 xpos = k*(size+40)+20;
+			 
+			 Dobbelsteen dobbelsteen = new Dobbelsteen( size, xpos, ypos );
+			 
+			 this.voegtoe( dobbelsteen );
+			 
+			k++;
+			 
+		 }
 	}
 	
+	/**
+	 * Geef een willekeurige hint aan.
+	 * @return randomHint
+	 */
 	public String getRandomHint(){
 		// Geef een willekeurige tip
 		Random random = new Random();
@@ -153,38 +223,59 @@ public class Game {
 		return randomHint;
 	}
 	
-	// Methode om aantal dobbelstenen op te vragen
+	/**
+	 *  Methode om aantal dobbelstenen op te vragen
+	 * @return
+	 */
 	public Integer getAantalDobbelstenen() {
 		return aantalDobbelstenen;
 	}
 	
-	// Methode om aantal beurten op te vragen
+	/**
+	 *  Methode om aantal beurten op te vragen
+	 * @return
+	 */
 	public Integer getBeurt() {
 		return beurt;
 	}
 	
-	// Methode om de score op te vragen
+	/**
+	 *  Methode om de score op te vragen
+	 * @return
+	 */
 	public Integer getScore() {
 		return score;
 	}
 	
-	// Methode om de score op te vragen
+	/**
+	 *  Methode om het totaal aantal Wakken op te vragen
+	 * @return
+	 */
 	public Integer getTotaalWakken() {
 		return totaalWakken;
 	}
 
-	// Methode om de score op te vragen
+	/**
+	 * Methode om het totaal aantal Ijsberen op te vragen.
+	 * @return totaalIjsberen
+	 */
 	public Integer getTotaalIjsberen() {
 		return totaalIjsberen;
 	}
 	
-	// Methode om de score op te vragen
+	/**
+	 *  Methode om het totaal aantal pinguins op te vragen
+	 * @return totaalPinguins;
+	 */
 	public Integer getTotaalPinguins() {
 		return totaalPinguins;
 	}
 	
+	/** 
+	 * Roep voor elke instantie van de dobbelsteenklasse de teken-functie aan. maak gebruik van polymorfie
+	 * @param g
+	 */
 	public void teken( Graphics g ){
-		//ArrayList<Dobbelsteen> dobbelstenen = model.getDobbelstenen();
 		
 		for( Dobbelsteen dobbelsteen : dobbelstenen ){
 			dobbelsteen.teken( g );

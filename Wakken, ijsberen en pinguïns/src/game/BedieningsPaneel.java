@@ -4,24 +4,44 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.event.*;
 
+/**
+ * De klasse <code>BediendingsPaneel</code> representeert het bediendingspaneel.
+ * 
+ * @author Jesse
+ * @version 0.3
+ * @see Game
+ * @see GameView
+ */
 public class BedieningsPaneel extends JPanel
 							  implements ChangeListener {
 	private JFrame frame;
 	private Game model;
 	private JPanel view, scorePaneel;
-	private JLabel labelWakken, labelIjsberen, labelPinguins;
-	private JTextField invoervakWakken, invoervakIjsberen, invoervakPinguins;
+	private JLabel beurtLabel, scoreLabel, foutLabel, wakkenLabel, ijsberenLabel, pinguinsLabel, wakkenTotaalLabel, ijsberenTotaalLabel, pinguinsTotaalLabel;
+	private JTextField wakkenVak, ijsberenVak, pinguinsVak;
 	private JButton dobbelKnop, checkKnop;
 	
-	//Constructor
+	/**
+	 * Constructor
+	 * @param frame
+	 * @param model
+	 * @param view
+	 * @param scorePaneel
+	 */
 	public BedieningsPaneel( JFrame frame, Game model, JPanel view, JPanel scorePaneel ){
 		
 		this.frame = frame;
 		this.model = model;
 		this.view = view;
 		this.scorePaneel = scorePaneel;
+		
+		// TODO: Welke layout is het meest geschikt?
+		setLayout( new GridLayout( 1,2 ) );
+		//setLayout( new BoxLayout( this, BoxLayout.LINE_AXIS ) );
+		setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		
 		int frameWidth = (int) this.getWidth();
 		
@@ -31,26 +51,55 @@ public class BedieningsPaneel extends JPanel
 		setBackground( new Color(0, 0, 0, 80) );
 		
 		JPanel linksPaneel = new JPanel();
-		linksPaneel.setLayout( new BoxLayout( linksPaneel, BoxLayout.Y_AXIS ));
-		//linksPaneel.setBackground(Color.RED);
+		linksPaneel.setLayout( new BoxLayout( linksPaneel, BoxLayout.PAGE_AXIS ));
+		//linksPaneel.setLayout( new GridLayout( 4,2,10,10 ) );
+		//linksPaneel.setAlignmentX( Component.LEFT_ALIGNMENT );
+		linksPaneel.setBackground(Color.RED);
 		
 		JPanel rechtsPaneel = new JPanel();
-		rechtsPaneel.setLayout( new BoxLayout( rechtsPaneel, BoxLayout.Y_AXIS ) );
-		//rechtsPaneel.setBackground(Color.BLUE);
+		rechtsPaneel.setLayout( new BoxLayout( rechtsPaneel, BoxLayout.PAGE_AXIS ) );
+		//rechtsPaneel.setLayout( new GridLayout( 4,2,10,10 ) );
+		
+		rechtsPaneel.setBackground(Color.BLUE);
 		
 		JPanel linksBovenPaneel = new JPanel();
-		linksBovenPaneel.setLayout( new GridLayout(1, 1) );
-		//linksBovenPaneel.setLayout( null );
-		
 		JPanel linksMiddenPaneel = new JPanel();
 		JPanel linksOnderPaneel = new JPanel();
 		JPanel rechtsBovenPaneel = new JPanel();
 		JPanel rechtsMiddenPaneel = new JPanel();
 		JPanel rechtsOnderPaneel = new JPanel();
 		
-		//linksBovenPaneel.setBackground(Color.BLUE);
-		//linksMiddenPaneel.setBackground(Color.YELLOW);
-		//linksOnderPaneel.setBackground(Color.RED);
+		JPanel linksKnopPaneel = new JPanel();
+		JPanel rechtsKnopPaneel = new JPanel();
+		
+		linksBovenPaneel.setLayout(new BoxLayout(linksBovenPaneel, BoxLayout.PAGE_AXIS));
+		linksMiddenPaneel.setLayout(new BoxLayout(linksMiddenPaneel, BoxLayout.LINE_AXIS));
+		linksOnderPaneel.setLayout(new BoxLayout(linksOnderPaneel, BoxLayout.LINE_AXIS));
+		//linksKnopPaneel.setLayout(new BoxLayout(linksKnopPaneel, BoxLayout.LINE_AXIS));
+		/*
+		 * TODO: werkt alleen goed bij expliciete groottes van componenten
+		rechtsBovenPaneel.setLayout(new BoxLayout(rechtsBovenPaneel, BoxLayout.LINE_AXIS));
+		rechtsMiddenPaneel.setLayout(new BoxLayout(rechtsMiddenPaneel, BoxLayout.LINE_AXIS));
+		rechtsOnderPaneel.setLayout(new BoxLayout(rechtsOnderPaneel, BoxLayout.LINE_AXIS));
+		//rechtsKnopPaneel.setLayout(new BoxLayout(rechtsKnopPaneel, BoxLayout.LINE_AXIS));
+		*/
+		
+		linksBovenPaneel.setAlignmentX( LEFT_ALIGNMENT );
+		linksMiddenPaneel.setAlignmentX( LEFT_ALIGNMENT );
+		linksOnderPaneel.setAlignmentX( LEFT_ALIGNMENT );
+		linksKnopPaneel.setAlignmentX( LEFT_ALIGNMENT );
+		
+		rechtsBovenPaneel.setAlignmentX( RIGHT_ALIGNMENT );
+		rechtsMiddenPaneel.setAlignmentX( RIGHT_ALIGNMENT );
+		rechtsOnderPaneel.setAlignmentX( RIGHT_ALIGNMENT );
+		rechtsKnopPaneel.setAlignmentX( CENTER_ALIGNMENT );
+		
+		/*
+		linksBovenPaneel.setBackground(Color.BLUE);
+		linksMiddenPaneel.setBackground(Color.YELLOW);
+		linksOnderPaneel.setBackground(Color.RED);
+		linksKnopPaneel.setBackground(Color.GREEN);
+		*/
 		
 		linksPaneel.add( linksBovenPaneel );
 		linksPaneel.add( linksMiddenPaneel );
@@ -59,81 +108,121 @@ public class BedieningsPaneel extends JPanel
 		rechtsPaneel.add( rechtsMiddenPaneel );
 		rechtsPaneel.add( rechtsOnderPaneel );
 		
+		linksPaneel.add( linksKnopPaneel );
+		rechtsPaneel.add( rechtsKnopPaneel );
+		
 		linksPaneel.setOpaque(false);
 		linksBovenPaneel.setOpaque(false);
 		linksMiddenPaneel.setOpaque(false);
 		linksOnderPaneel.setOpaque(false);
+		linksKnopPaneel.setOpaque(false);
 		rechtsPaneel.setOpaque(false);
 		rechtsBovenPaneel.setOpaque(false);
 		rechtsMiddenPaneel.setOpaque(false);
 		rechtsOnderPaneel.setOpaque(false);
-		
-	    //Radio knoppen
-	    JRadioButton variant1Knop = new JRadioButton( "Variant 1" );
-	    variant1Knop.setMnemonic(KeyEvent.VK_B);
-	    variant1Knop.setActionCommand("variant1");
-	    variant1Knop.setSelected(true);
-
-	    JRadioButton variant2Knop = new JRadioButton( "Variant 2" );
-	    variant2Knop.setMnemonic(KeyEvent.VK_C);
-	    variant2Knop.setActionCommand("variant2");
-
-	    JRadioButton variant3Knop = new JRadioButton( "Variant 3" );
-	    variant3Knop.setMnemonic(KeyEvent.VK_D);
-	    variant3Knop.setActionCommand("variant3");
-
-	    /*
-	    //Group the radio buttons.
-	    ButtonGroup group = new ButtonGroup();
-	    group.add(variant1Knop);
-	    group.add(variant2Knop);
-	    group.add(variant3Knop);
-	    */
-	    
-	    //topLeftPanel.add(group);
+		rechtsKnopPaneel.setOpaque(false);
 		
 		// Labels en invoervakken aanmaken en positioneren
+		Dimension labelsize = new Dimension( 100, 32 );
 		
-		labelWakken = new JLabel( "Wakken" );
-		labelWakken.setFont( font );
-		//labelWakken.setBounds( 50, 300, 150, 50 );
-		//labelWakken.setPreferredSize(new Dimension(200, 100));
-		//labelWakken.setSize( new Dimension(10,50) );
+		beurtLabel = new JLabel("Beurt: 0");
+		//beurtLabel.setSize( labelsize );
+		beurtLabel.setPreferredSize( labelsize );
+		beurtLabel.setMinimumSize( labelsize );
+		beurtLabel.setMaximumSize( labelsize );
+		beurtLabel.setFont( font );
+		beurtLabel.setForeground(Color.WHITE);
+		beurtLabel.setHorizontalAlignment( JLabel.LEFT );
+		beurtLabel.setAlignmentX( LEFT_ALIGNMENT );
 		
-		invoervakWakken = new JTextField( 10 );
-		//invoervakWakken.setBounds( 150, 300, 50, 50 );
-		//invoervakWakken.setSize( new Dimension(10,20) );
+		scoreLabel = new JLabel("Score: 0");
+		//scoreLabel.setSize( labelsize );
+		scoreLabel.setPreferredSize( labelsize );
+		scoreLabel.setMinimumSize( labelsize );
+		scoreLabel.setMaximumSize( labelsize );
+		scoreLabel.setFont( font );
+		scoreLabel.setForeground(Color.WHITE);
+		scoreLabel.setAlignmentX( CENTER_ALIGNMENT );
 		
-		//invoervakWakken.setPreferredSize(new Dimension(200, 100));
-		//invoervakWakken.setBackground(Color.BLUE);
+		foutLabel = new JLabel("Fout: 0");
+		//foutLabel.setSize( labelsize );
+		foutLabel.setPreferredSize( labelsize );
+		foutLabel.setMinimumSize( labelsize );
+		foutLabel.setMaximumSize( labelsize );
+		foutLabel.setFont( font );
+		foutLabel.setForeground(Color.WHITE);
+		foutLabel.setHorizontalAlignment( JLabel.LEFT );
+		foutLabel.setAlignmentX( LEFT_ALIGNMENT );
 		
-		labelIjsberen = new JLabel( "IJsberen" );
-		labelIjsberen.setFont( font );
-		//labelIjsberen.setBounds( 50, 350, 150, 50 );
-		//labelIjsberen.setSize( new Dimension(10,50) );
+		wakkenLabel = new JLabel( "Wakken" );
+		//wakkenLabel.setBounds( 50, 300, 150, 50 );
+		//wakkenLabel.setSize( labelsize );
+		wakkenLabel.setPreferredSize( labelsize );
+		wakkenLabel.setFont( font );
+		wakkenLabel.setForeground(Color.WHITE);
 		
-		invoervakIjsberen = new JTextField( 10 );
-		//invoervakIjsberen.setBounds( 150, 350, 50, 50 );
+		wakkenVak = new JTextField( 5 );
+		wakkenVak.setToolTipText("Voer hier het aantal wakken in");
+		wakkenVak.setAlignmentX(LEFT_ALIGNMENT);
+		wakkenVak.setHorizontalAlignment( JTextField.RIGHT );
+		//wakkenVak.setBounds( 150, 300, 50, 50 );
+		//wakkenVak.setSize( new Dimension(10,20) );
+		//wakkenVak.setPreferredSize(new Dimension(200, 100));
+		//wakkenVak.setBackground(Color.BLUE);
 		
-		labelPinguins = new JLabel( "Pinguïns" );
-		labelPinguins.setFont( font );
-		//labelPinguins.setBounds( 50, 400, 150, 50 );
-		//labelPinguins.setSize( new Dimension(10,50) );
+		wakkenTotaalLabel = new JLabel( "0" );
+		wakkenTotaalLabel.setPreferredSize( new Dimension(32,32) );
+		wakkenTotaalLabel.setFont( font );
+		wakkenTotaalLabel.setForeground(Color.WHITE);
+		wakkenTotaalLabel.setHorizontalAlignment( JLabel.RIGHT );
 		
-		invoervakPinguins = new JTextField( 10 );
-		//invoervakPinguins.setBounds( 150, 400, 50, 50 );
+		ijsberenLabel = new JLabel( "IJsberen" );
+		//ijsberenLabel.setBounds( 50, 350, 150, 50 );
+		//ijsberenLabel.setSize( labelsize );
+		ijsberenLabel.setPreferredSize( labelsize );
+		ijsberenLabel.setFont( font );
+		ijsberenLabel.setForeground(Color.WHITE);
 		
-	    //b2 = new JButton("Middle button", middleButtonIcon);
-	    //b2.setVerticalTextPosition(AbstractButton.BOTTOM);
-	    //b2.setHorizontalTextPosition(AbstractButton.CENTER);
+		ijsberenVak = new JTextField( 5 );
+		ijsberenVak.setHorizontalAlignment( JTextField.RIGHT );
+		//ijsberenVak.setBounds( 150, 350, 50, 50 );
+		
+		ijsberenTotaalLabel = new JLabel( "0" );
+		ijsberenTotaalLabel.setPreferredSize( new Dimension(32,32) );
+		ijsberenTotaalLabel.setFont( font );
+		ijsberenTotaalLabel.setForeground(Color.WHITE);
+		ijsberenTotaalLabel.setHorizontalAlignment( JLabel.RIGHT );
+		
+		pinguinsLabel = new JLabel( "Pinguïns" );
+		//pinguinsLabel.setBounds( 50, 400, 150, 50 );
+		//pinguinsLabel.setSize( labelsize );
+		pinguinsLabel.setPreferredSize( labelsize );
+		pinguinsLabel.setFont( font );
+		pinguinsLabel.setForeground(Color.WHITE);
+
+		pinguinsVak = new JTextField( 5 );
+		pinguinsVak.setHorizontalAlignment( JTextField.RIGHT );
+		//pinguinsVak.setBounds( 150, 400, 50, 50 );
+		
+		pinguinsTotaalLabel = new JLabel( "0" );
+		pinguinsTotaalLabel.setPreferredSize( new Dimension(32,32) );
+		pinguinsTotaalLabel.setFont( font );
+		pinguinsTotaalLabel.setForeground(Color.WHITE);
+		pinguinsTotaalLabel.setHorizontalAlignment( JLabel.RIGHT );
 		
 		dobbelKnop = new JButton( "Dobbel" );
 		dobbelKnop.addActionListener( new Handler() );
+		dobbelKnop.setSize(new Dimension(120, 40));
+		dobbelKnop.setPreferredSize(new Dimension(120, 40));
+		//dobbelKnop.setPreferredSize( 120,80 );
 		dobbelKnop.setFont(font);
-		dobbelKnop.setSize(100, 50);
+		dobbelKnop.setBackground(Color.GREEN);
+		dobbelKnop.setForeground(Color.WHITE);
+		dobbelKnop.setBorder(new LineBorder(Color.WHITE, 2));
+		
 		//dobbelKnop.setBounds(200, 200, 100, 50);
 		
-		checkKnop = new JButton( "Check!" );
+		checkKnop = new JButton( "Controleer" );
 		checkKnop.addActionListener( new Handler() );
 		checkKnop.setFont(font);
 		checkKnop.setSize(100, 50);
@@ -145,45 +234,29 @@ public class BedieningsPaneel extends JPanel
 		int width;
 		width = dobbelKnop.getWidth();
 		
+		// TODO: kan weg?
 		dobbelKnop.setBounds( (frameWidth - width) / 2 - width, 300, 200, 50 );
 		checkKnop.setBounds( (frameWidth - width) / 2 + width, 300, 200, 50 );
 		
-		/*
-		// verplaatsen naar settingspaneel
-		// DOCS: https://docs.oracle.com/javase/tutorial/uiswing/components/slider.html
-		JSlider aantalDobbelstenen = new JSlider(JSlider.HORIZONTAL, 3, 8, model.getAantalDobbelstenen());
+		linksBovenPaneel.add(beurtLabel);
+		linksMiddenPaneel.add(scoreLabel);
+		linksOnderPaneel.add(foutLabel);
 		
-		aantalDobbelstenen.addChangeListener(this);
-		//aantalDobbelstenen.setBounds(200, 250, 400, 50);
-		aantalDobbelstenen.setMajorTickSpacing(1);
-		aantalDobbelstenen.setMinorTickSpacing(1);
-		aantalDobbelstenen.setPaintTicks(true);
-		aantalDobbelstenen.setPaintLabels(true);
-		aantalDobbelstenen.setBackground( new Color(0,0,0,0) );
-		//aantalDobbelstenen.setOpaque(false);
-		linksMiddenPaneel.add(aantalDobbelstenen);
-		*/
+		rechtsBovenPaneel.add(wakkenLabel);
+		rechtsBovenPaneel.add(wakkenVak);
+		rechtsBovenPaneel.add(wakkenTotaalLabel);
+		rechtsMiddenPaneel.add(ijsberenLabel);
+		rechtsMiddenPaneel.add(ijsberenVak);
+		rechtsMiddenPaneel.add(ijsberenTotaalLabel);
+		rechtsOnderPaneel.add(pinguinsLabel);
+		rechtsOnderPaneel.add(pinguinsVak);
+		rechtsOnderPaneel.add(pinguinsTotaalLabel);
+		
+		//wakkenLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		//wakkenVak.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-		rechtsBovenPaneel.add(invoervakWakken);
-		rechtsBovenPaneel.add(labelWakken);
-		rechtsMiddenPaneel.add(invoervakIjsberen);
-		rechtsMiddenPaneel.add(labelIjsberen);
-		rechtsOnderPaneel.add(invoervakPinguins);
-		rechtsOnderPaneel.add(labelPinguins);
-		/*
-		// verplaatsen naar settingspaneel
-        JPanel radioPanel = new JPanel(new GridLayout(1, 1));
-        radioPanel.add(variant1Knop);
-        radioPanel.add(variant2Knop);
-        radioPanel.add(variant3Knop);
- 
-        //add(radioPanel, BorderLayout.LINE_START);
-        
-        // verplaatsen naar settings window
-        //linksBovenPaneel.add(radioPanel);
-        */
-        linksOnderPaneel.add(dobbelKnop);
-        linksOnderPaneel.add(checkKnop);
+		linksKnopPaneel.add(dobbelKnop);
+        rechtsKnopPaneel.add(checkKnop);
         
 		add(linksPaneel);
 		add(rechtsPaneel);
@@ -201,22 +274,54 @@ public class BedieningsPaneel extends JPanel
 		*/
 	}
 	
+	/**
+	 * 
+	 */
 	public void paintComponent( Graphics g ) {
 		super.paintComponent(g);
+
+		/*
+		// Scoreboard
+		*/
+		
+		g.drawString( "" + model.getTotaalWakken(), 220, 120 );
+		g.drawString( "" + model.getTotaalIjsberen(), 220, 160 );
+		g.drawString( "" + model.getTotaalPinguins(), 220, 200 );
+		
 	}
 	
-	class Handler implements ActionListener {
+	/**
+	 * 
+	 * @author Jesse
+	 *
+	 */
+	private class Handler implements ActionListener {
 		public void actionPerformed( ActionEvent e ){
+			
+			String newline = "\n";
+			
 			
 			
 			
 			if( e.getSource() == dobbelKnop ){
 				model.dobbel();
 				
-				// verstoppen of...?
-				//dobbelKnop.setVisible( false );
-				//checkKnop.setVisible( true );
-				// ...uitschakelen
+				int beurt = model.getBeurt();
+				beurtLabel.setText("Beurt: " + beurt);
+				
+				wakkenVak.setText("");
+				ijsberenVak.setText("");
+				pinguinsVak.setText("");
+				
+				//TODO: uncomment voor inleveren
+				//wakkenTotaalLabel.setText("");
+				//ijsberenTotaalLabel.setText("");
+				//pinguinsTotaalLabel.setText("");
+				
+				//wakkenTotaalLabel.setVisible(false);
+				//ijsberenTotaalLabel.setVisible(false);
+				//pinguinsTotaalLabel.setVisible(false);
+				
 				dobbelKnop.setEnabled( false );
 				checkKnop.setEnabled( true );
 				
@@ -224,23 +329,66 @@ public class BedieningsPaneel extends JPanel
 			}else
 			if( e.getSource() == checkKnop ){
 				
-				String invoerstringWakken = invoervakWakken.getText();
-				int wakken = Integer.parseInt( invoerstringWakken );
+				String invoerstringWakken = wakkenVak.getText();
+				String invoerstringIjsberen = ijsberenVak.getText();
+				String invoerstringPinguins = pinguinsVak.getText();
 				
-				String invoerstringIjsberen = invoervakIjsberen.getText();
-				int ijsberen = Integer.parseInt( invoerstringIjsberen );
+				try{
+					int wakken = Integer.parseInt( invoerstringWakken );
+					int ijsberen = Integer.parseInt( invoerstringIjsberen );
+					int pinguins = Integer.parseInt( invoerstringPinguins );
+					
+					model.check(wakken, ijsberen, pinguins);
+					
+					int beurt = model.getBeurt();
+					int score = model.getScore();
+					scoreLabel.setText("Score: " + score);
+					foutLabel.setText("Fout: " + (beurt - score));
+					
+					wakkenTotaalLabel.setText(""+model.getTotaalWakken());
+					ijsberenTotaalLabel.setText(""+model.getTotaalIjsberen());
+					pinguinsTotaalLabel.setText(""+model.getTotaalPinguins());
+					
+					// TODO: kan beter leeg ipv niet zichtbaar
+					//wakkenTotaalLabel.setVisible(true);
+					//ijsberenTotaalLabel.setVisible(true);
+					//pinguinsTotaalLabel.setVisible(true);
+					
+					checkKnop.setEnabled( false );
+					dobbelKnop.setEnabled( true );
+					
+					//TODO: invoervakken ook nog leegmaken?
+
+				}catch( NumberFormatException nfe ){
+					
+					String invoer = "";
+					
+					if( invoerstringWakken.equals( "" ) ){
+						invoer += "Je hebt nog niets bij wakken ingevuld!" + newline;
+					}
+					if( invoerstringIjsberen.equals( "" ) ){
+						invoer += "Je hebt nog niets bij ijsberen ingevuld!" + newline;
+					}
+					if(invoerstringPinguins.equals( "" ) ){
+						invoer += "Je hebt nog niets bij pinguïns ingevuld!" + newline;
+					}
+						/*
+					else{
+						invoer = "" + wakkenVak.getText() + ijsberenVak.getText() + pinguinsVak.getText();
+					}
+					*/
+					JOptionPane.showMessageDialog( frame, 
+						"Fout getal: " + invoer,
+						"Fout in invoer",
+						JOptionPane.ERROR_MESSAGE
+					);
+					
+				} finally {
+					// Wat hier?
+				}
 				
-				String invoerstringPinguins = invoervakPinguins.getText();
-				int pinguins = Integer.parseInt( invoerstringPinguins );
-				
-				// TODO: check functie die argumenten kan ontvangen??
-				model.check(wakken, ijsberen, pinguins);
-				
-				//dobbelKnop.setVisible( true );
-				//checkKnop.setVisible( false );
-				
-				checkKnop.setEnabled( false );
-				dobbelKnop.setEnabled( true );
+
+
 			}
 
 			//hele frame verversen?
@@ -254,8 +402,11 @@ public class BedieningsPaneel extends JPanel
 		}
 	}
 
+	/**
+	 * TODO: Verwijderen?
+	 */
 	public void stateChanged( ChangeEvent e ) {
-		
+		/*
 		//int aantalDobbelstenen = model.getAantalDobbelstenen();
 		
 	    JSlider source = (JSlider)e.getSource();
@@ -273,7 +424,7 @@ public class BedieningsPaneel extends JPanel
 	    //model.start();
 	    
 		frame.repaint();
-		
+		*/
 	}
 	
 }

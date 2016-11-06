@@ -3,11 +3,24 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * De klasse <code>Dobbelsteen</code> representeert een dobbelsteen.
+ * 
+ * @author Jesse
+ * @version 0.3
+ * @see Game
+ * @see GameView
+ */
 public class Dobbelsteen {
 	
 	private int radius, diameter, left, center, right, top, middle, bottom, worp, x, y, size, borderRadius, borderWidth, wakken, ijsberen, pinguins;
 	
-	// Constructor voor de klasse Dobbelsteen.
+	/**
+	 *  Constructor voor de klasse Dobbelsteen.
+	 * @param size
+	 * @param x
+	 * @param y
+	 */
 	public Dobbelsteen( int size, int x, int y ) {
 		
 		this.size = size;
@@ -26,11 +39,18 @@ public class Dobbelsteen {
 
 	}
 	
+	/**
+	 * Haal de worp op
+	 * @return het getal dat geworpen is
+	 */
 	public int getWorp() {
 		return worp;
 	}
 	
-	// een beetje onnodig functie om een getal te forceren.
+	/**
+	 * Een onnodige functie om een geworpen getal te forceren.
+	 * @param worp
+	 */
 	public void setWorp( int worp )	{
 		if(worp >= 1 && worp <= 6)
 		{

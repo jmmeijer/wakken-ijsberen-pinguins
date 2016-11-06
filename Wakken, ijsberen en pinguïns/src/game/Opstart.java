@@ -11,14 +11,19 @@ import javax.swing.event.ChangeListener;
  * De klasse <code>Opstart</code> representeert een frame.
  * 
  * @author Jesse
- * @version 0.1
+ * @version 0.3
  * @see Opstart
  * @see Paneel
  */
 public class Opstart implements ActionListener, ChangeListener {
 	
+	// TODO statische var verwijderen
 	private static Game model;
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main( String args[] ) {
 		int width = 800;
 		int height = 600;
@@ -37,7 +42,7 @@ public class Opstart implements ActionListener, ChangeListener {
 		//JMenuBar test = maakMenuBalk();
 		//frame.setJMenuBar(test);
 		
-		frame.setJMenuBar(opstart.maakMenuBalk());
+		frame.setJMenuBar(opstart.maakMenuBalk(frame));
 		model = new Game(1, 3);
 		
 		//verstuur instantie van Opstartframe mee met Paneel voor manipulatie vanuit Paneel
@@ -62,7 +67,10 @@ public class Opstart implements ActionListener, ChangeListener {
 	// DOCS: https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
 	
 	// Static gemaakt om werkend te krijgen
-	public JMenuBar maakMenuBalk(){
+	/*
+	 * Maak de menubalk met menuitems.
+	 */
+	public JMenuBar maakMenuBalk( JFrame frame ){
 		//Where the GUI is created:
 		JMenuBar menuBar;
 		JMenu fileMenu, helpMenu;
@@ -186,12 +194,17 @@ public class Opstart implements ActionListener, ChangeListener {
 			test.setLayout( new GridLayout(0, 2) );
 			test.setBorder( titelrand );
 			
+			test.add(labelSpelvariant);
+			
+			JPanel radioPanel = new JPanel(new GridLayout(1, 1));
+	        radioPanel.add(variant1Knop);
+	        radioPanel.add(variant2Knop);
+	        radioPanel.add(variant3Knop);
+			
+			test.add(radioPanel);
+			
 			test.add(labelAantalDobbelstenen);
 			test.add(aantalDobbelstenen);
-			test.add(labelSpelvariant);
-			test.add(variant1Knop);
-			test.add(variant2Knop);
-			test.add(variant3Knop);
 			
 			
 			//test.add(group);
@@ -208,11 +221,23 @@ public class Opstart implements ActionListener, ChangeListener {
 	        
 	        */
 			
-			JOptionPane.showMessageDialog(null,
+			Object[] options = {"Opslaan",
+            "Annuleren"};
+			
+			int n = JOptionPane.showOptionDialog(null,
 					test,
                     "Instellingen",
-                    JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
 			
+			if (n == JOptionPane.OK_OPTION) {
+				JOptionPane.showMessageDialog(null,
+					    "Test");
+				//TODO Alleen opslaan wanneer er op OK is gedrukt
+			}
 			
 			
 	}
@@ -272,8 +297,7 @@ public class Opstart implements ActionListener, ChangeListener {
         */
     }
 	
-	
-	
+	// TODO: verplaatsen naar ok button.
 	public void stateChanged( ChangeEvent e ) {
 		
 		//int aantalDobbelstenen = model.getAantalDobbelstenen();

@@ -3,14 +3,25 @@ package game;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 
+/**
+ * De klasse <code>Gameview</code> representeert het paneel gameview.
+ * 
+ * @author Jesse
+ * @version 0.3
+ * @see Game
+ * @see GameView
+ */
 public class GameView extends JPanel {
 
 	private Game model;
 	
-	// Constructor
+	/**
+	 *  Constructor
+	 * @param model
+	 * @param scorePaneel
+	 */
 	public GameView( Game model, JPanel scorePaneel ){
 		this.model = model;
 		
@@ -20,14 +31,15 @@ public class GameView extends JPanel {
 		//setBackground( new Color(0, 0, 0, 0) );
 	}
 	
+	/**
+	 * Teken het spel
+	 */
 	public void paintComponent( Graphics g ) {
 		super.paintComponent(g);
 
 		model.teken(g);
 		
-		g.drawString( "" + model.getTotaalWakken(), 220, 120 );
-		g.drawString( "" + model.getTotaalIjsberen(), 220, 160 );
-		g.drawString( "" + model.getTotaalPinguins(), 220, 200 );
+
 		
 	}
 	

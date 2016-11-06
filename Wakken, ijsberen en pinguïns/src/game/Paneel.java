@@ -15,7 +15,7 @@ import javax.swing.event.*;
  * De klasse <code>Paneel</code> representeert een paneel.
  * 
  * @author Jesse
- * @version 0.2
+ * @version 0.3
  * @see Opstart
  * @see Paneel
  */
@@ -42,7 +42,7 @@ class Paneel extends JPanel {
 		//model = new Game(1, 3);
 		
 		scorePaneel = new ScorePaneel( model );
-		scorePaneel.setPreferredSize(new Dimension(100, 150));
+		scorePaneel.setPreferredSize(new Dimension(800, 50));
 		//scorePaneel.setMaximumSize(new Dimension(100, 400));
 		
 		view = new GameView( model, scorePaneel );
@@ -53,14 +53,14 @@ class Paneel extends JPanel {
 		
 		bedieningsPaneel = new BedieningsPaneel( frame, model, view, scorePaneel );
 		//bedieningsPaneel.setLayout( new BoxLayout( bedieningsPaneel, BoxLayout.X_AXIS ));
-		bedieningsPaneel.setLayout( new GridLayout( 1,2 ) );
-		bedieningsPaneel.setPreferredSize(new Dimension(100, 150));
+		//bedieningsPaneel.setLayout( new GridLayout( 1,2 ) );
+		bedieningsPaneel.setPreferredSize(new Dimension(100, 200));
 		//bedieningsPaneel.setMaximumSize(new Dimension(100, 400));
 		
 		//bedieningsPaneel.setBackground( new Color(0, 0, 0, 0) );
 		//bedieningsPaneel.setOpaque(false);
 
-		add(scorePaneel, BorderLayout.PAGE_START);
+		//add(scorePaneel, BorderLayout.PAGE_START);
 		add(view, BorderLayout.CENTER);
 		add(bedieningsPaneel, BorderLayout.PAGE_END);
 
