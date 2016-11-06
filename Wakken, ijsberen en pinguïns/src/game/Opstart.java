@@ -226,8 +226,6 @@ public class Opstart implements ActionListener, ChangeListener {
 			
 			if (n == JOptionPane.OK_OPTION) {
 				
-				JOptionPane.showMessageDialog(null,
-					    "Test");
 				//TODO Alleen opslaan wanneer er op OK is gedrukt
 				//view.repaint();
 			}
@@ -344,8 +342,6 @@ public class Opstart implements ActionListener, ChangeListener {
 	    if (!source.getValueIsAdjusting()) {
 	        
 	    	int test2 = (int) source.getValue();
-	    	
-	    	//JOptionPane.showMessageDialog(null, "Test"+ test2);
 	    	
 	    	model.setAantalDobbelstenen( test2 );
 	        

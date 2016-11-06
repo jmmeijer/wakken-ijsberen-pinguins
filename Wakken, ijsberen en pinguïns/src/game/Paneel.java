@@ -33,7 +33,6 @@ class Paneel extends JPanel {
 		//setBackground( Color.GREEN );
 		//setBackground( new Color(40, 220, 40 ) );
 		
-		
 		// maak een nieuwe instantie van de game aan met als argument 1 voor variant en 3 voor aantalDobbelstenen.
 		//model = new Game(1, 3);
 		
