@@ -78,13 +78,13 @@ public class Opstart implements ActionListener, ChangeListener {
 		
 		menuBar = new JMenuBar();
 
-		//Build the first menu.
+		// Bestand menu
 		fileMenu = new JMenu("Bestand");
 		fileMenu.setMnemonic(KeyEvent.VK_B);
 		fileMenu.getAccessibleContext().setAccessibleDescription( "The only menu in this program that has menu items");
 		menuBar.add(fileMenu);
 		
-		//a group of JMenuItems
+		// Gegroepeerde menu items
 		menuItem = new JMenuItem("Hint", KeyEvent.VK_H);
 		menuItem.getAccessibleContext().setAccessibleDescription( "This doesn't really do anything");
 		menuItem.setActionCommand("Hint");
@@ -97,7 +97,7 @@ public class Opstart implements ActionListener, ChangeListener {
 		menuItem.addActionListener(this);
 		fileMenu.add(menuItem);
 		
-		// Seperator
+		// Separator
 		fileMenu.addSeparator();
 		
 		// Sluit optie
@@ -234,9 +234,11 @@ public class Opstart implements ActionListener, ChangeListener {
                     options[0]);
 			
 			if (n == JOptionPane.OK_OPTION) {
+				
 				JOptionPane.showMessageDialog(null,
 					    "Test");
 				//TODO Alleen opslaan wanneer er op OK is gedrukt
+				view.repaint();
 			}
 			
 			

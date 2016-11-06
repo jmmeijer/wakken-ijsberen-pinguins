@@ -90,7 +90,15 @@ public class Dobbelsteen {
 	 * @return het aantal ijsberen op
 	 */
 	public int getIJsberen(){
-		return wakken;
+		return ijsberen;
+	}
+	
+	/**
+	 * Haal het aantal pinguïns op
+	 * @return het aantal pinguïns op
+	 */
+	public int getPinguins(){
+		return pinguins;
 	}
 	
 	public void teken(Graphics g) {
