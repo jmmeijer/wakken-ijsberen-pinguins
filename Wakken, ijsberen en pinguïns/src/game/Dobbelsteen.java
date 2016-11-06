@@ -40,11 +40,18 @@ public class Dobbelsteen {
 	}
 	
 	/**
-	 * Haal de worp op
-	 * @return het getal dat geworpen is
+	 * genereer een willekeurig getal tussen 1 en 6 en bepaal het aantal wakken ijsberen en pinguins
 	 */
-	public int getWorp() {
-		return worp;
+	public void dobbel() {
+		worp = (int) ( 6 * Math.random() +1 );
+		
+		if(worp == 1 || worp == 3 || worp == 5){
+			wakken = 1;
+			ijsberen = worp - 1;
+			pinguins = 7 - worp;
+		}else{
+			wakken = ijsberen = pinguins = 0;
+		}
 	}
 	
 	/**
@@ -62,16 +69,28 @@ public class Dobbelsteen {
 		}
 	}
 	
-	public void dobbel() {
-		worp = (int) ( 6 * Math.random() +1 );
-		
-		if(worp == 1 || worp == 3 || worp == 5){
-			wakken = 1;
-			ijsberen = worp - 1;
-			pinguins = 7 - worp;
-		}else{
-			wakken = ijsberen = pinguins = 0;
-		}
+	/**
+	 * Haal het resultaat van de worp op
+	 * @return het getal dat geworpen is
+	 */
+	public int getWorp() {
+		return worp;
+	}
+	
+	/**
+	 * Haal het aantal wakken op
+	 * @return het aantal wakken op
+	 */
+	public int getWakken(){
+		return wakken;
+	}
+	
+	/**
+	 * Haal het aantal ijsberen op
+	 * @return het aantal ijsberen op
+	 */
+	public int getIJsberen(){
+		return wakken;
 	}
 	
 	public void teken(Graphics g) {

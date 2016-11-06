@@ -285,7 +285,7 @@ public class BedieningsPaneel extends JPanel
 		*/
 		
 		g.drawString( "" + model.getTotaalWakken(), 220, 120 );
-		g.drawString( "" + model.getTotaalIjsberen(), 220, 160 );
+		g.drawString( "" + model.getTotaalIJsberen(), 220, 160 );
 		g.drawString( "" + model.getTotaalPinguins(), 220, 200 );
 		
 	}
@@ -330,12 +330,12 @@ public class BedieningsPaneel extends JPanel
 			if( e.getSource() == checkKnop ){
 				
 				String invoerstringWakken = wakkenVak.getText();
-				String invoerstringIjsberen = ijsberenVak.getText();
+				String invoerstringIJsberen = ijsberenVak.getText();
 				String invoerstringPinguins = pinguinsVak.getText();
 				
 				try{
 					int wakken = Integer.parseInt( invoerstringWakken );
-					int ijsberen = Integer.parseInt( invoerstringIjsberen );
+					int ijsberen = Integer.parseInt( invoerstringIJsberen );
 					int pinguins = Integer.parseInt( invoerstringPinguins );
 					
 					model.check(wakken, ijsberen, pinguins);
@@ -346,7 +346,7 @@ public class BedieningsPaneel extends JPanel
 					foutLabel.setText("Fout: " + (beurt - score));
 					
 					wakkenTotaalLabel.setText(""+model.getTotaalWakken());
-					ijsberenTotaalLabel.setText(""+model.getTotaalIjsberen());
+					ijsberenTotaalLabel.setText(""+model.getTotaalIJsberen());
 					pinguinsTotaalLabel.setText(""+model.getTotaalPinguins());
 					
 					// TODO: kan beter leeg ipv niet zichtbaar
@@ -366,7 +366,7 @@ public class BedieningsPaneel extends JPanel
 					if( invoerstringWakken.equals( "" ) ){
 						invoer += "Je hebt nog niets bij wakken ingevuld!" + newline;
 					}
-					if( invoerstringIjsberen.equals( "" ) ){
+					if( invoerstringIJsberen.equals( "" ) ){
 						invoer += "Je hebt nog niets bij ijsberen ingevuld!" + newline;
 					}
 					if(invoerstringPinguins.equals( "" ) ){

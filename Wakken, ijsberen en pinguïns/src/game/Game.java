@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class Game {
 	
-	private int variant, aantalDobbelstenen, beurt, score, totaalWakken, totaalIjsberen, totaalPinguins;
+	private int variant, aantalDobbelstenen, beurt, score, totaalWakken, totaalIJsberen, totaalPinguins;
 	private ArrayList<Dobbelsteen> dobbelstenen;
 	private ArrayList<String> hints;
 
@@ -43,7 +43,7 @@ public class Game {
 		// TODO: onderscheid tussen varianten in tips
 		hints = new ArrayList<String>();
 		hints.add("Wakken zijn in het midden van de Noordpool");
-		hints.add("Ijsberen zijn vaak rondom wakken te vinden");
+		hints.add("IJsberen zijn vaak rondom wakken te vinden");
 		hints.add("Pinguins bevinden zich op de Zuidpool");
 		
 
@@ -89,7 +89,7 @@ public class Game {
 		// reset waardes naar 0.
 		// Misschien in ArrayList?
 		totaalWakken = 0;
-		totaalIjsberen = 0;
+		totaalIJsberen = 0;
 		totaalPinguins = 0;
 		
 		 for( Dobbelsteen dobbelsteen : dobbelstenen ){
@@ -107,7 +107,7 @@ public class Game {
 		
 		// reset waardes naar 0.
 		//totaalWakken = 0;
-		//totaalIjsberen = 0;
+		//totaalIJsberen = 0;
 		//totaalPinguins = 0;
 		
 		// Ga voor elke dobbelsteen het aantal w, ij en p na en tel deze op bij totaal
@@ -118,12 +118,12 @@ public class Game {
 			
 			if(worp == 1 || worp == 3 || worp == 5){
 				totaalWakken += 1;
-				totaalIjsberen += worp - 1;
+				totaalIJsberen += worp - 1;
 				totaalPinguins += 7 - worp;
 			}
 		}
 		
-		if( wakken == totaalWakken && ijsberen == totaalIjsberen && pinguins == totaalPinguins ){
+		if( wakken == totaalWakken && ijsberen == totaalIJsberen && pinguins == totaalPinguins ){
 			score++;
 		}else{
 			
@@ -135,7 +135,7 @@ public class Game {
 		}else{
 			// aantal wakken fout
 		}
-		if(ijsberen == totaalIjsberen){
+		if(ijsberen == totaalIJsberen){
 			// aantal ijsberen goed
 		}else{
 			// aantal ijsberen fout
@@ -256,11 +256,11 @@ public class Game {
 	}
 
 	/**
-	 * Methode om het totaal aantal Ijsberen op te vragen.
-	 * @return totaalIjsberen
+	 * Methode om het totaal aantal IJsberen op te vragen.
+	 * @return totaalIJsberen
 	 */
-	public Integer getTotaalIjsberen() {
-		return totaalIjsberen;
+	public Integer getTotaalIJsberen() {
+		return totaalIJsberen;
 	}
 	
 	/**
