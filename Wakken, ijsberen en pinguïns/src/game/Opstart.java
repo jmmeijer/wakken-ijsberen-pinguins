@@ -83,18 +83,18 @@ public class Opstart implements ActionListener, ChangeListener {
 		// Bestand menu
 		fileMenu = new JMenu("Bestand");
 		fileMenu.setMnemonic(KeyEvent.VK_B);
-		fileMenu.getAccessibleContext().setAccessibleDescription( "The only menu in this program that has menu items");
+		fileMenu.getAccessibleContext().setAccessibleDescription( "Bestand");
 		menuBar.add(fileMenu);
 		
 		// Gegroepeerde menu items
 		menuItem = new JMenuItem("Hint", KeyEvent.VK_H);
-		menuItem.getAccessibleContext().setAccessibleDescription( "This doesn't really do anything");
+		menuItem.getAccessibleContext().setAccessibleDescription( "Geef een hint");
 		menuItem.setActionCommand("Hint");
 		menuItem.addActionListener(this);
 		fileMenu.add(menuItem);
 		
 		menuItem = new JMenuItem("Instellingen", KeyEvent.VK_I);
-		menuItem.getAccessibleContext().setAccessibleDescription( "This doesn't really do anything");
+		menuItem.getAccessibleContext().setAccessibleDescription( "Instellingen van het spel");
 		menuItem.setActionCommand("Instellingen");
 		menuItem.addActionListener(this);
 		fileMenu.add(menuItem);
@@ -105,7 +105,7 @@ public class Opstart implements ActionListener, ChangeListener {
 		// Sluit optie
 		menuItem = new JMenuItem("Afsluiten", KeyEvent.VK_T);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
-		menuItem.getAccessibleContext().setAccessibleDescription( "This doesn't really do anything");
+		menuItem.getAccessibleContext().setAccessibleDescription( "Sluit het spel");
 		menuItem.setActionCommand("Afsluiten");
 		menuItem.addActionListener(this);
 		fileMenu.add(menuItem);
