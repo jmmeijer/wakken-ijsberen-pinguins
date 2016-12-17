@@ -275,22 +275,6 @@ public class BedieningsPaneel extends JPanel
 	
 	/**
 	 * 
-	 */
-	public void paintComponent( Graphics g ) {
-		super.paintComponent(g);
-
-		/*
-		// Scoreboard
-		*/
-		
-		g.drawString( "" + model.getTotaalWakken(), 220, 120 );
-		g.drawString( "" + model.getTotaalIJsberen(), 220, 160 );
-		g.drawString( "" + model.getTotaalPinguins(), 220, 200 );
-		
-	}
-	
-	/**
-	 * 
 	 * @author Jesse
 	 *
 	 */

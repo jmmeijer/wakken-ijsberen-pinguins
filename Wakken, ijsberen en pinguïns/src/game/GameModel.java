@@ -37,7 +37,7 @@ public class GameModel {
 		}
 		
 		beurt = 0;
-		
+		score = 0;
 		
 		
 		// TODO: onderscheid tussen varianten in tips
@@ -66,6 +66,9 @@ public class GameModel {
 		
 		beurt = 0;
 		score = 0;
+		totaalWakken = 0;
+		totaalIJsberen = 0;
+		totaalPinguins = 0;
 
 	}
 	

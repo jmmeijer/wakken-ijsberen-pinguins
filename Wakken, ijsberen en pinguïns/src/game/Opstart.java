@@ -19,6 +19,7 @@ public class Opstart implements ActionListener, ChangeListener {
 	
 	// TODO statische var verwijderen
 	private GameModel model;
+	private JPanel paneel;
 	
 	/**
 	 * 
@@ -46,10 +47,10 @@ public class Opstart implements ActionListener, ChangeListener {
 		opstart.model = new GameModel(1, 3);
 		
 		//verstuur instantie van Opstartframe mee met Paneel voor manipulatie vanuit Paneel
-		JPanel paneel = new Paneel( frame, opstart.model );
-		paneel.setPreferredSize(new Dimension( width, height ));
-		paneel.setMinimumSize(new Dimension( width, height ));
-		frame.setContentPane( paneel );
+		opstart.paneel = new Paneel( frame, opstart.model );
+		opstart.paneel.setPreferredSize(new Dimension( width, height ));
+		opstart.paneel.setMinimumSize(new Dimension( width, height ));
+		frame.setContentPane( opstart.paneel );
 		
 		//frame.setMinimumSize(new Dimension(width, height));
 		//frame.setSize( new Dimension(width, height) );
@@ -228,6 +229,8 @@ public class Opstart implements ActionListener, ChangeListener {
 				
 				//TODO Alleen opslaan wanneer er op OK is gedrukt
 				//view.repaint();
+				model.reset();
+				paneel.repaint();
 			}
 			
 			
